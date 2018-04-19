@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var Household = require('../models/household');
+var shortid = require('/shortid');
+
+shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
 /* ALL GETS */
 router.get('/', function(req, res, next) {
@@ -53,26 +56,28 @@ router.post('household', function(req, res, next){
  //sendJsonResponse(res, 200, {"status" : "success", "student" : "created"});
   //console.log(req.body);
   //householdID: req.body.householdid,
+  //			studentID:  req.body.studentid,
+  //householdID: shortid.generate(),
 	var household = new Household({
 		parentFirstName: req.body.parentfirstname,
 		parentLastName: req.body.parentlastname,
-
-		streetAddress: req.body.streetaddress,
+    streetAddress: req.body.streetaddress,
+    householdID: shortid.generate(),
 		city: req.body.city,
 		state: req.body.state,
 		zip: req.body.zip,
 		phone: req.body.phone,
 		altphone: req.body.altphone,
 		billingCycle: req.body.billingCycle,
-		student:{
+		student:[{
 			studentFirstName: req.body.studentfirstname,
-			studentLastName: req.body.studentlastname,
+      studentLastName: req.body.studentlastname,
+      studentID: shortid.generate(),
 			aftercare:  req.body.aftercare,
 			programID:  req.body.programid,
-			studentID:  req.body.studentid,
 			notes:  req.body.notes,
 			dateOfBirth:  req.body.dateofbirth
-    }
+    }]
   },function(err, location){
 		if (err){
 			sendJsonResponse(res, 400, err);

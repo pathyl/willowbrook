@@ -14,15 +14,18 @@ block content
             div.form-group
               label.control-label(for='studentlastname') Student Last Name:
               input#studentlastname.form-control(type='text', name='studentlastname', required='' placeholder='Student Last Name')
+            //div.form-group
+              label.control-label(for='studentid') Student ID:
+              input#studentid.form-control(type='text', name='studentid', required='' placeholder='Student ID')
             div.form-group
               label.control-label(for='dateofbirth') Date of birth:
               input#dateofbirth.form-control(type='date', required='')
             div.form-group
               label.control-label(for='phone') Phone:
-              input#phone.form-control(type='text', name='phone', required='')
+              input#phone.form-control(type='text', name='phone', required='' placeholder='555-5555')
             div.form-group
               label.control-label(for='altphone') Alternate Phone:
-              input#altphone.form-control(type='text', name='altphone', required='')
+              input#altphone.form-control(type='text', name='altphone', required='' placeholder='555-5555')
             div.form-group
               label.control-label(for='academicprogram') Academic Program:
               select#academicprogram.form-control(name='academicprogram', required='')
@@ -49,27 +52,29 @@ block content
                 label.control-label.form-check-label(for='aftercare') Aftercare (Yes/No):
                 input#aftercare.form-control.form-check-input(type='checkbox', name='aftercare', required='')
             br
-            
           .col-md-3
             div.form-group
               label.control-label(for='parentfirstname') Parent First Name:
-              input#parentfirstname.form-control(type='text', name='parentfirstname', required='')
+              input#parentfirstname.form-control(type='text', name='parentfirstname', required='' placeholder='Parent First Name')
             div.form-group
               label.control-label(for='parentlastname') Parent Last Name:
-              input#parentlastname.form-control(type='text', name='parentlastname', required='')
+              input#parentlastname.form-control(type='text', name='parentlastname', required=''  placeholder='Parent Last Name')
+            //div.form-group
+              label.control-label(for='householdid') Household ID:
+              input#householdid.form-control(type='text', name='householdid', required='' placeholder='Household ID')
             div.form-group
               label.control-label(for='streetaddress') Street Address:
-              input#streetaddress.form-control(type='text', name='streetaddress', required='')
+              input#streetaddress.form-control(type='text', name='streetaddress', required=''  placeholder='Street Address')
             div.form-group
               label.control-label(for='city') City:
-              input#city.form-control(type='text', name='city', required='')
+              input#city.form-control(type='text', name='city', required=''  placeholder='City')
             div.form-group
               label.control-label(for='state') State:
               select#state.form-control(required='')
                 option(value='TX') Texas
             div.form-group
               label.control-label(for='zip') Zip Code:
-              input#zip.form-control(type='text', name='zipcode', required='')
+              input#zip.form-control(type='text', name='zipcode', required=''  placeholder='Zip Code')
             div.form-group
               label.control-label(for='billingcycle') Billing Cycle:
               select#billingcycle.form-control(name='billingcycle', required='')
@@ -79,12 +84,15 @@ block content
             
           .col-md-3
         .row
-          .col-md-3
-          .col-md-3
+          .col-md-4
+          .col-md-4
+            .form-group
+              label.control-label(for='notes') Student Notes:
+              textarea.form-control(rows='3')
             div.form-group
               input#submit.form-control.btn.btn-primary.btn-md(type='submit', value='Register New Student')
-          .col-md-3
-            div.form-group
+              p
               input#reset.form-control.btn.btn-danger.btn-md(type='reset', value='Reset Form')
-          .col-md-3
+          .col-md-4
+            
 

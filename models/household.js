@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 const householdSchema = new mongoose.Schema({
 	parentFirstName: {type: String},
 	parentLastName: {type: String},
-	householdID: {type: Number},
+	householdID: {type: String},
 	streetAddress: {type: String},
 	city: {type: String},
 	state: {type: String},
@@ -30,6 +30,7 @@ const householdSchema = new mongoose.Schema({
 			
 		}],
 	bill: [{
+		billID:{type: String},
 		dueDate: {type: Date},
 		paid: {type: Boolean},
 		amount: {type: Number},

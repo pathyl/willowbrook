@@ -1,2 +1,7 @@
 login layout complete
 absence add layout complete
+aftercare add layout complete
+billdetails layout complete
+createhousehold layout complete
+householddetails complete
+studentdetails complete
