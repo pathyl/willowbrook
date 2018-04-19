@@ -54,4 +54,4 @@ process.on('SIGTERM', function(){
 	});
 });
 
-require('./household');
+require('./schemas');

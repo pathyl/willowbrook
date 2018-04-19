@@ -5,3 +5,4 @@ billdetails layout complete
 createhousehold layout complete
 householddetails complete
 studentdetails complete
+add student to household complete

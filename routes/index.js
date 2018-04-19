@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var Household = require('../models/household');
+var allSchemas = require('../models/schemas');
 var shortid = require('../node_modules/shortid');
+var bodyParser = require('body-parser');
 
 shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_');
 
@@ -51,14 +52,11 @@ router.get('/household/0/bill', function(req, res, next) {
 
 // END OF GETS
 //POSTS
-router.post('household', function(req, res, next){
+router.post('/household', function(req, res, next){
+  //shortid.generate() creates short id's for us
 
- //sendJsonResponse(res, 200, {"status" : "success", "student" : "created"});
-  //console.log(req.body);
-  //householdID: req.body.householdid,
-  //			studentID:  req.body.studentid,
-  //householdID: shortid.generate(),
-	var household = new Household({
+  //create a household
+	var myHousehold = new allSchemas.household({
 		parentFirstName: req.body.parentfirstname,
 		parentLastName: req.body.parentlastname,
     streetAddress: req.body.streetaddress,
@@ -68,27 +66,34 @@ router.post('household', function(req, res, next){
 		zip: req.body.zip,
 		phone: req.body.phone,
 		altphone: req.body.altphone,
-		billingCycle: req.body.billingCycle,
-		student:[{
-			studentFirstName: req.body.studentfirstname,
-      studentLastName: req.body.studentlastname,
-      studentID: shortid.generate(),
-			aftercare:  req.body.aftercare,
-			programID:  req.body.programid,
-			notes:  req.body.notes,
-			dateOfBirth:  req.body.dateofbirth
-    }]
+    billingCycle: req.body.billingCycle
+    
   },function(err, location){
 		if (err){
 			sendJsonResponse(res, 400, err);
 		}else {
-			sendJsonResponse(res, 201, "it : success");
+			sendJsonResponse(res, 201, "household : success");
 		}
-	});
-	household.save().then(result => {
+  });
+
+  //create a student
+  var myStudent = new allSchemas.student({
+    studentFirstName: req.body.studentfirstname,
+    studentLastName: req.body.studentlastname,
+    studentID: shortid.generate(),
+    aftercare:  req.body.aftercare,
+    programID:  req.body.programid,
+    notes:  req.body.notes,
+    dateOfBirth:  req.body.dateofbirth
+  })
+
+  //push student onto student array inside our household
+  myHousehold.student.push(myStudent);
+  
+  //save the household
+	myHousehold.save().then(result => {
 		console.log(result);
 	}).catch(err => console.log(err));
-
-
+  res.render('createhousehold', { title: 'Register New Household' });
 });
 module.exports = router;
