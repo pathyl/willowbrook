@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var Household = require('../models/household');
-var shortid = require('/shortid');
+var shortid = require('../node_modules/shortid');
 
-shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_');
 
 /* ALL GETS */
 router.get('/', function(req, res, next) {
