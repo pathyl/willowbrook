@@ -4,17 +4,20 @@ block content
   .card
     h4.card-header.text-center= title
     .card-body
-      form(action='/login', method='POST')
+
         .form-row
-          .col-md-3
-          .col-md-3
-            div.form-group
-              label.control-label(for='username') Username: 
-              input#studentfirstname.form-control(type='text', name='username', required='' placeholder='Username')
-            
-          .col-md-3
-            div.form-group
-              label.control-label(for='password') Password: 
-              input#password.form-control(type='password', name='studentlastname', required='' placeholder='Password')
-          .col-md-3
+          .col-md-4
+          .col-md-4
+            form(action='/login', method='POST')
+              .form-group
+                label.control-label(for='username') Username: 
+                input#studentfirstname.form-control(type='text', name='username', required='' placeholder='Username')
+              .form-group
+                label.control-label(for='password') Password: 
+                input#password.form-control(type='password', name='studentlastname', required='' placeholder='Password')
+              .form-group.text-center
+                button.btn.btn-danger(type='submit', name='loginforgot',) Forgot Password
+                p
+                button.btn.btn-primary(type='submit', name='loginsubmit',) Login
+          .col-md-4
         .row
