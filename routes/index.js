@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var Household = require('../models/household');
 
 /* ALL GETS */
 router.get('/', function(req, res, next) {
@@ -46,5 +47,43 @@ router.get('/household/0/bill', function(req, res, next) {
 
 
 // END OF GETS
+//POSTS
+router.post('household', function(req, res, next){
 
+ //sendJsonResponse(res, 200, {"status" : "success", "student" : "created"});
+  //console.log(req.body);
+  //householdID: req.body.householdid,
+	var household = new Household({
+		parentFirstName: req.body.parentfirstname,
+		parentLastName: req.body.parentlastname,
+
+		streetAddress: req.body.streetaddress,
+		city: req.body.city,
+		state: req.body.state,
+		zip: req.body.zip,
+		phone: req.body.phone,
+		altphone: req.body.altphone,
+		billingCycle: req.body.billingCycle,
+		student:{
+			studentFirstName: req.body.studentfirstname,
+			studentLastName: req.body.studentlastname,
+			aftercare:  req.body.aftercare,
+			programID:  req.body.programid,
+			studentID:  req.body.studentid,
+			notes:  req.body.notes,
+			dateOfBirth:  req.body.dateofbirth
+    }
+  },function(err, location){
+		if (err){
+			sendJsonResponse(res, 400, err);
+		}else {
+			sendJsonResponse(res, 201, "it : success");
+		}
+	});
+	household.save().then(result => {
+		console.log(result);
+	}).catch(err => console.log(err));
+
+
+});
 module.exports = router;

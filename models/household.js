@@ -22,6 +22,10 @@ const householdSchema = new mongoose.Schema({
 		absences:[{
 			dateAbsent: {type:Date},
 			absenceType:{type: String}
+		}],
+		aftercare:[{
+			time: {type: Number},
+			date: {type: Date}
 		}]
 			
 		}],
