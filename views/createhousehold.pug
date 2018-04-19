@@ -1,0 +1,90 @@
+extends layout
+
+block content
+  .card
+    h4.card-header.text-center= title
+    .card-body
+      form(action='/household', method='POST')
+        .form-row
+          .col-md-3
+          .col-md-3
+            div.form-group
+              label.control-label(for='studentfirstname') Student First Name:
+              input#studentfirstname.form-control(type='text', name='studentfirstname', required='' placeholder='Student First Name')
+            div.form-group
+              label.control-label(for='studentlastname') Student Last Name:
+              input#studentlastname.form-control(type='text', name='studentlastname', required='' placeholder='Student Last Name')
+            div.form-group
+              label.control-label(for='dateofbirth') Date of birth:
+              input#dateofbirth.form-control(type='date', required='')
+            div.form-group
+              label.control-label(for='phone') Phone:
+              input#phone.form-control(type='text', name='phone', required='')
+            div.form-group
+              label.control-label(for='altphone') Alternate Phone:
+              input#altphone.form-control(type='text', name='altphone', required='')
+            div.form-group
+              label.control-label(for='academicprogram') Academic Program:
+              select#academicprogram.form-control(name='academicprogram', required='')
+                option(value='prek') Pre-K
+                br
+                option(value='kindergarten') Kindergarten
+                br
+                option(value='first') First
+                br
+                option(value='second') Second
+                br
+                option(value='third') Third
+                br
+                option(value='fourth') Fourth
+                br
+                option(value='fifth') Fifth
+                br
+                option(value='sixth') Sixth
+                br
+                option(value='aftercareonly') Aftercare Only
+                br
+            div.form-group
+              div.form-check
+                label.control-label.form-check-label(for='aftercare') Aftercare (Yes/No):
+                input#aftercare.form-control.form-check-input(type='checkbox', name='aftercare', required='')
+            br
+            
+          .col-md-3
+            div.form-group
+              label.control-label(for='parentfirstname') Parent First Name:
+              input#parentfirstname.form-control(type='text', name='parentfirstname', required='')
+            div.form-group
+              label.control-label(for='parentlastname') Parent Last Name:
+              input#parentlastname.form-control(type='text', name='parentlastname', required='')
+            div.form-group
+              label.control-label(for='streetaddress') Street Address:
+              input#streetaddress.form-control(type='text', name='streetaddress', required='')
+            div.form-group
+              label.control-label(for='city') City:
+              input#city.form-control(type='text', name='city', required='')
+            div.form-group
+              label.control-label(for='state') State:
+              select#state.form-control(required='')
+                option(value='TX') Texas
+            div.form-group
+              label.control-label(for='zip') Zip Code:
+              input#zip.form-control(type='text', name='zipcode', required='')
+            div.form-group
+              label.control-label(for='billingcycle') Billing Cycle:
+              select#billingcycle.form-control(name='billingcycle', required='')
+                option(value='monthly') Monthly
+                br
+                option(value='weekly') Weekly
+            
+          .col-md-3
+        .row
+          .col-md-3
+          .col-md-3
+            div.form-group
+              input#submit.form-control.btn.btn-primary.btn-md(type='submit', value='Register New Student')
+          .col-md-3
+            div.form-group
+              input#reset.form-control.btn.btn-danger.btn-md(type='reset', value='Reset Form')
+          .col-md-3
+

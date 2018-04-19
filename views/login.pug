@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  .card
+    h4.card-header.text-center= title
+    .card-body
+      form(action='/login', method='POST')
+        .form-row
+          .col-md-3
+          .col-md-3
+            div.form-group
+              label.control-label(for='username') Username: 
+              input#studentfirstname.form-control(type='text', name='username', required='' placeholder='Username')
+            
+          .col-md-3
+            div.form-group
+              label.control-label(for='password') Password: 
+              input#password.form-control(type='password', name='studentlastname', required='' placeholder='Password')
+          .col-md-3
+        .row
