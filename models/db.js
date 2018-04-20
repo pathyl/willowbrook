@@ -98,7 +98,7 @@ const studentSchema = new mongoose.Schema({
     householdID: {type: Number},
     fullID: {type: String},
     notes: {type: String},
-    dateOfBirth: {type: Date},
+    dateOfBirth: {type: String},
 	aftercare: {type: String},
 	});
 	

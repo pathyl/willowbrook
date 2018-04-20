@@ -19,7 +19,7 @@ block content
               input#studentid.form-control(type='text', name='studentid', required='' placeholder='Student ID')
             div.form-group
               label.control-label(for='dateofbirth') Date of birth:
-              input#dateofbirth.form-control(type='date', required='')
+              input#dateofbirth.form-control(type='Date', name='dateofbirth', required='')
             div.form-group
               label.control-label(for='phone') Phone:
               input#phone.form-control(type='text', name='phone', required='' placeholder='555-5555')
@@ -71,16 +71,16 @@ block content
             div.form-group
               label.control-label(for='state') State:
               select#state.form-control(name='state')
-                option(value='TX') Texas
+                option(value="TX") Texas
             div.form-group
               label.control-label(for='zip') Zip Code:
               input#zip.form-control(type='text', name='zip', required=''  placeholder='Zip Code')
             div.form-group
               label.control-label(for='billingcycle') Billing Cycle:
               select#billingcycle.form-control(name='billingcycle', required='')
-                option(value='monthly') Monthly
+                option(value="monthly") Monthly
                 br
-                option(value='weekly') Weekly
+                option(value="weekly") Weekly
             
           .col-md-3
         .row

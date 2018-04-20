@@ -90,7 +90,7 @@ router.post('/household', function(req, res, next){
 		zip: req.body.zip,
 		phone: req.body.phone,
 		altphone: req.body.altphone,
-    billingCycle: req.body.billingCycle
+    billingCycle: req.body.billingcycle
     
   },function(err, result){
 		if (err){
@@ -108,10 +108,10 @@ router.post('/household', function(req, res, next){
     studentFirstName: req.body.studentfirstname,
     studentLastName: req.body.studentlastname,
     aftercare:  req.body.aftercare,
-    programID:  req.body.programid,
+    programID:  req.body.academicprogram,
     householdID: result.householdID,
-    notes:  req.body.notes,
-    dateOfBirth:  req.body.dateofbirth
+    notes: req.body.notes,
+    dateOfBirth: req.body.dateofbirth
   },function(err, result){
 		if (err){
 			sendJsonResponse(res, 400, err);
