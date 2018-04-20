@@ -1,3 +1,6 @@
+
+
+
 var mongoose = require('mongoose');
 var dbURIlocal = 'mongodb://localhost/willowbrook';
 var dbURIOnline = 'mongodb://pathyl:p42nt41@ds241699.mlab.com:41699/willowbrook';
@@ -77,13 +80,11 @@ const loginSchema = new mongoose.Schema({
 
 
 const absenceSchema = new mongoose.Schema({
-	studentID: {type: Number},
     dateAbsent: {type:Date},
-    absenceType: {type: String}
+    absenceType:{type: String}
 });
 
 const aftercareSchema = new mongoose.Schema({
-	studentID: {type: Number},
     time: {type: Number},
     date: {type: Date}
 });
@@ -95,23 +96,21 @@ const studentSchema = new mongoose.Schema({
     aftercare: {type: String},
     programID: {type: String},
     studentID: {type: Number},
-    householdID: {type: Number},
-    fullID: {type: String},
     notes: {type: String},
-    dateOfBirth: {type: Date},
-	aftercare: {type: String},
+    dateOfBirth: {type: Date },
+    absences:[absenceSchema],
+    aftercare:[aftercareSchema]
 	});
 	
-	//Start studentID at and increment by 1 for each new student
+	//Start studentID at 100 and increment by 1 for each new student
 	studentSchema.plugin(autoIncrement.plugin, {
 		model: 'studentSchema',
 		field: 'studentID',
-		startAt: 10,
+		startAt: 1,
 		incrementBy: 1
 	});
 
 const billSchema = new mongoose.Schema({
-	householdID: {type: Number},
 	dueDate: {type: Date},
 	paid: {type: Boolean},
 	amount: {type: Number},
@@ -125,10 +124,12 @@ const householdSchema = new mongoose.Schema({
 	streetAddress: {type: String},
 	city: {type: String},
 	state: {type: String},
-	zip: {type: String},
+	zip: {type: Number},
 	phone: {type: String},
 	altphone: {type: String},
-    billingCycle: {type: String},
+	billingCycle: {type: String},
+	student: [studentSchema],
+	bill: [billSchema]
 });
 
 //begin householdID at 100 and increment by 1 each time
@@ -145,4 +146,3 @@ module.exports.absence = mongoose.model('Absence', absenceSchema);
 module.exports.aftercare = mongoose.model('Aftercare', aftercareSchema);
 module.exports.bill = mongoose.model('Bill', billSchema);
 module.exports.login = mongoose.model('Login', loginSchema);
-

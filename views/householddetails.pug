@@ -11,19 +11,19 @@ block content
                         tbody
                             tr
                             th(scope='row') Parent Name:
-                            td Cortez Gartman
+                            td #{household.parentFirstName} #{household.parentLastName}
                             tr
                             th(scope='row') Household ID:
-                            td ------
+                            td #{household.householdID}
                             tr
                             th(scope='row') Address:
-                            td 7489 Wishing Moor, Lufkin, TX 75960
+                            td #{household.streetAddress}, #{household.city}, #{household.state}, #{household.zip}
                             tr
                             th(scope='row') Phone:
-                            td 512-555-0171
+                            td #{household.phone}
                             tr
                             th(scope='row') Alternate Phone:
-                            td 512-555-5481                            
+                            td #{household.altphone}                          
                 .col-md-6
                     .row
                         .card.border-secondary.mb-3

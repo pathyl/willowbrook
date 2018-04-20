@@ -25,7 +25,7 @@ block content
               input#phone.form-control(type='text', name='phone', required='' placeholder='555-5555')
             div.form-group
               label.control-label(for='altphone') Alternate Phone:
-              input#altphone.form-control(type='text', name='altphone', required='' placeholder='555-5555')
+              input#altphone.form-control(type='text', name='altphone', placeholder='555-5555')
             div.form-group
               label.control-label(for='academicprogram') Academic Program:
               select#academicprogram.form-control(name='academicprogram', required='')
@@ -70,11 +70,11 @@ block content
               input#city.form-control(type='text', name='city', required=''  placeholder='City')
             div.form-group
               label.control-label(for='state') State:
-              select#state.form-control(required='')
+              select#state.form-control(name='state')
                 option(value='TX') Texas
             div.form-group
               label.control-label(for='zip') Zip Code:
-              input#zip.form-control(type='text', name='zipcode', required=''  placeholder='Zip Code')
+              input#zip.form-control(type='text', name='zip', required=''  placeholder='Zip Code')
             div.form-group
               label.control-label(for='billingcycle') Billing Cycle:
               select#billingcycle.form-control(name='billingcycle', required='')
