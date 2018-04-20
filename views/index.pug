@@ -4,4 +4,13 @@ block content
   .card
     h4.card-header.text-center= title
     .card-body
+      form(action='/householdsearch', method='POST')
+        .form-row
+          .col-md-4
+          .col-md-4
+            div.form-group
+              label.control-label(for='searchTerm') Household Search:
+              input#searchTerm.form-control(type='text', name='searchTerm', required='' placeholder='Search for Household')
+            div.form-group
+              input#submit.form-control.btn.btn-primary.btn-md(type='submit', value='Search')
 

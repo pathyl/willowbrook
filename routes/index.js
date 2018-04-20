@@ -77,8 +77,40 @@ router.get('/household/:householdId', function(req, res, next) {
 });
 // END OF GETS
 //POSTS
+function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+};
+
+router.post('/householdsearch', function(req, res, next){
+    //get search term from searchbox
+    var searchTerm = req.body.searchTerm;
+    console.log(searchTerm + " this is the searchTerm");
+
+    if( isNumeric(searchTerm) ){
+      //if it is numeric expect a householdID number
+      res.redirect('/household/' + searchTerm);
+
+    }else{
+      //if it's not numeric then expect a full name "Patrick Hyland"
+      var splitString = searchTerm.split(" ");
+      var first = splitString[0];
+      var last = splitString[1];
+      allSchemas.household.findOne( { parentFirstName: first, parentLastName: last} ).exec(function(err, result){
+        if(err){
+          sendJsonResponse(res, 400, err);
+        }else{
+          console.log(result + " Found results");
+          res.redirect('/household/' + result.householdID);
+        }
+    });
+    }
+      
+
+  });
+
 
 //Take data from form and create a new household with student
+//COMPLETE
 router.post('/household', function(req, res, next){
 
   //create a household
@@ -132,7 +164,7 @@ router.post('/household', function(req, res, next){
 
   //redirect us to see the details page of newly created household
   res.redirect('/household/' + result.householdID);
-  
+
   }).catch(err => console.log(err));
   
   //take us back to the empty household form to enter another
@@ -141,23 +173,24 @@ router.post('/household', function(req, res, next){
   //res.redirect('/household');
 });
 
+
+//COMPLETE
 router.post('/student', function(req, res, next) {
 
   //Create a student
   var myStudent = new allSchemas.student({
     studentFirstName: req.body.studentfirstname,
     studentLastName: req.body.studentlastname,
+    householdID: req.body.householdid,
     aftercare:  req.body.aftercare,
     programID:  req.body.programid,
     notes:  req.body.notes,
     dateOfBirth:  req.body.dateofbirth
   });
-  //lookup household by household id passed in req.body.householdid
-
-  //push student onto household's array of students
-
-  //save household
-
+  //Save student
+  myStudent.save().then(result=> {
+    console.log(result);
+  }).catch(err => console.log(err));
 });
 
 

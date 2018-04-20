@@ -78,14 +78,14 @@ const loginSchema = new mongoose.Schema({
 
 const absenceSchema = new mongoose.Schema({
 	studentID: {type: Number},
-    dateAbsent: {type:Date},
+    dateAbsent: {type: String},
     absenceType: {type: String}
 });
 
 const aftercareSchema = new mongoose.Schema({
 	studentID: {type: Number},
     time: {type: Number},
-    date: {type: Date}
+    date: {type: String}
 });
 
 
@@ -112,10 +112,10 @@ const studentSchema = new mongoose.Schema({
 
 const billSchema = new mongoose.Schema({
 	householdID: {type: Number},
-	dueDate: {type: Date},
-	paid: {type: Boolean},
+	dueDate: {type: String},
+	paid: {type: String},
 	amount: {type: Number},
-	discount: {type: Boolean}
+	discount: {type: String}
 });
 
 const householdSchema = new mongoose.Schema({

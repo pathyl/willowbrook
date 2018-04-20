@@ -4,7 +4,7 @@ block content
   .card
     h4.card-header.text-center= title
     .card-body
-      form(action='/student/:householdid', method='POST')
+      form(action='/student/', method='POST')
         .form-row
           .col-md-4
           .col-md-4
@@ -14,35 +14,32 @@ block content
             div.form-group
               label.control-label(for='studentlastname') Student Last Name:
               input#studentlastname.form-control(type='text', name='studentlastname', required='' placeholder='Student Last Name')
-            //div.form-group
-              label.control-label(for='studentid') Student ID:
-              input#studentid.form-control(type='text', name='studentid', required='' placeholder='Student ID')
             div.form-group
               label.control-label(for='householdid') Household ID:
               input#householdid.form-control(type='text', name='householdid', required='' placeholder='Household ID')
             div.form-group
               label.control-label(for='dateofbirth') Date of birth:
-              input#dateofbirth.form-control(type='date', required='')
+              input#dateofbirth.form-control(type='Date' name='dateofbirth', required='')
             div.form-group
-              label.control-label(for='academicprogram') Academic Program:
-              select#academicprogram.form-control(name='academicprogram', required='')
-                option(value='prek') Pre-K
+              label.control-label(for='programid') Academic Program:
+              select#programid.form-control(name='programid', required='')
+                option(value='Pre-K') Pre-K
                 br
-                option(value='kindergarten') Kindergarten
+                option(value='Kindergarten') Kindergarten
                 br
-                option(value='first') First
+                option(value='First') First
                 br
-                option(value='second') Second
+                option(value='Second') Second
                 br
-                option(value='third') Third
+                option(value='Third') Third
                 br
-                option(value='fourth') Fourth
+                option(value='Fourth') Fourth
                 br
-                option(value='fifth') Fifth
+                option(value='Fifth') Fifth
                 br
-                option(value='sixth') Sixth
+                option(value='Sixth') Sixth
                 br
-                option(value='aftercareonly') Aftercare Only
+                option(value='Aftercare Only') Aftercare Only
                 br
             div.form-group
               div.form-check
