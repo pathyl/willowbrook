@@ -78,6 +78,7 @@ router.get('/household/:householdId', function(req, res, next) {
 // END OF GETS
 //POSTS
 
+//Take data from form and create a new household with student
 router.post('/household', function(req, res, next){
 
   //create a household
@@ -103,7 +104,8 @@ router.post('/household', function(req, res, next){
   //save the household
 	myHousehold.save().then(result => {
     console.log(result);
-    //create a student only after the household is saved so we can reference result.householdID to set the householdID for student
+
+  //create a student only after the household is saved so we can reference result.householdID to set the householdID for student
   var myStudent = new allSchemas.student({
     studentFirstName: req.body.studentfirstname,
     studentLastName: req.body.studentlastname,
@@ -122,17 +124,21 @@ router.post('/household', function(req, res, next){
 
   //push student onto student array inside our household
   //myHousehold.student.push(myStudent);
-  
+
   //save the student
   myStudent.save().then(result=> {
     console.log(result);
   }).catch(err => console.log(err));
+
+  //redirect us to see the details page of newly created household
+  res.redirect('/household/' + result.householdID);
+  
   }).catch(err => console.log(err));
   
-  
-
-
-  res.redirect('/household')
+  //take us back to the empty household form to enter another
+  //must change this to view the details of household we just created later
+  //res.redirect('/household/' + result.householdID)
+  //res.redirect('/household');
 });
 
 router.post('/student', function(req, res, next) {
