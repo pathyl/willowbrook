@@ -26,7 +26,11 @@ block content
                             td #{household.altphone}
                             tr
                             th(scope='row') Billing Cycle:
-                            td #{household.billingCycle}                          
+                            td #{household.billingCycle}
+                            tr
+                            th(scope='row')
+                            td
+                                a.btn.btn-info.btn-sm(href=`/household/${household.householdID}/addstudent`) Add Student to this Household                          
                 .col-md-6
                     .row
                         .card.border-secondary.mb-3

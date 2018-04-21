@@ -7,6 +7,13 @@ householddetails complete
 studentdetails complete
 add student to household complete
 
-to be done:
+
+
+studentdetails:
 finish student details page to show absences, add absence button, show aftercare info, add aftercare time button
-finish household details page to show bills, calculate bills on page load, show students in household with view student button
+
+
+
+householddetails:
+view bill button should redirect to itemized bill page /household/bill/:billdetails
+calculate bills on page load

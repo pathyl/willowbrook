@@ -30,7 +30,14 @@ block content
                             tr
                             th(scope='row') Program:
                             td #{student.programID}
-                            td                  
+                            td
+                            tr
+                            th(scope='row')
+                            td 
+                                a.btn.btn-info.btn-sm(href=`/student/${student.studentID}/absence`) Add Absence 
+                            td
+                                a.btn.btn-info.btn-sm(href=`/student/${student.studentID}/aftercare`) Add Aftercare Time
+
                 .col-md-6
                     .row
                         .card.border-secondary.mb-3
@@ -43,36 +50,11 @@ block content
                                             th(scope='col') Date
                                             th(scope='col') Type
                                         tbody
-                                            tr
-                                            td 1/19/2018
-                                            td Excused
-                                            tr
-                                            td 1/05/2018
-                                            td Unexcused
-                                            tr
-                                            td 12/22/2017
-                                            td Excused
-                                            tr
-                                            td 1/19/2018
-                                            td Excused
-                                            tr
-                                            td 1/05/2018
-                                            td Unexcused
-                                            tr
-                                            td 12/22/2017
-                                            td Excused
-                                            tr
-                                            td 1/19/2018
-                                            td Excused
-                                            tr
-                                            td 1/05/2018
-                                            td Unexcused
-                                            tr
-                                            td 12/22/2017
-                                            td Excused
-                                            tr
-                                            td 1/19/2018
-                                            td Excused
+                                            if absences
+                                                each a in absences
+                                                    tr
+                                                    td= a.dateAbsent
+                                                    td= a.absenceType
                     .row
                         .card.border-secondary.mb-3
                             h5.card-header.text-center Aftercare Info
@@ -84,18 +66,7 @@ block content
                                             th(scope='col') Date
                                             th(scope='col') Time Blocks (15 minute)
                                         tbody
-                                            tr
-                                            td 1/14/2018
-                                            td 4
-                                            tr
-                                            td 1/18/2018
-                                            td 5
-                                            tr
-                                            td 2/24/2018
-                                            td 3
-                                            tr
-                                            td 1/09/2018
-                                            td 6
-                                            tr
-                                            td 1/01/2018
-                                            td 3
+                                            each c in aftercares
+                                                tr
+                                                td= c.date
+                                                td= c.time

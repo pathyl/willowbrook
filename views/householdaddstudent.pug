@@ -1,0 +1,60 @@
+extends layout
+
+block content
+  .card
+    h4.card-header.text-center= title
+    .card-body
+      form(action=`/household/${householdid}/addstudent`, method='POST')
+        .form-row
+          .col-md-4
+          .col-md-4
+            div.form-group
+              label.control-label(for='studentfirstname') Student First Name:
+              input#studentfirstname.form-control(type='text', name='studentfirstname', required='' placeholder='Student First Name')
+            div.form-group
+              label.control-label(for='studentlastname') Student Last Name:
+              input#studentlastname.form-control(type='text', name='studentlastname', required='' placeholder='Student Last Name')
+            div.form-group
+              label.control-label(for='dateofbirth') Date of birth:
+              input#dateofbirth.form-control(type='Date' name='dateofbirth', required='')
+            div.form-group
+              label.control-label(for='programid') Academic Program:
+              select#programid.form-control(name='programid', required='')
+                option(value='Pre-K') Pre-K
+                br
+                option(value='Kindergarten') Kindergarten
+                br
+                option(value='First') First
+                br
+                option(value='Second') Second
+                br
+                option(value='Third') Third
+                br
+                option(value='Fourth') Fourth
+                br
+                option(value='Fifth') Fifth
+                br
+                option(value='Sixth') Sixth
+                br
+                option(value='Aftercare Only') Aftercare Only
+                br
+            div.form-group
+              div.form-check
+                label.control-label.form-check-label(for='aftercare') Aftercare (Yes/No):
+                input#aftercare.form-control.form-check-input(type='checkbox', name='aftercare', required='')
+            br
+            
+          .col-md-4
+        .row
+          .col-md-4
+          .col-md-4
+            .form-group
+              label.control-label(for='notes') Student Notes:
+              textarea.form-control(rows='3')
+            div.form-group
+              input#submit.form-control.btn.btn-primary.btn-md(type='submit', value='Add Student to Household')
+              p
+              input#reset.form-control.btn.btn-danger.btn-md(type='reset', value='Reset Form')
+          .col-md-4
+            
+

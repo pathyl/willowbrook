@@ -6,18 +6,21 @@ block content
             .form-row
                 .col-md-4
                 .col-md-4
-                    form(action='/student/0/absence', method='POST')
-                    .form-group
-                        label.control-label(for='absencedate') Date of Absence: 
-                        input#absencedate.form-control(type='date', name='absencedate', required='')
-                    .form-group
-                        label.control-label(for='absencetype') Type of Absence: 
-                        select#academicprogram.form-control(name='academicprogram', required='')
-                            option(value='Unexcused') Unexcused
-                            br
-                            option(value='Excused') Excused
-                    .form-group.text-center
-                        p
-                        button.btn.btn-primary(type='submit', name='submitabsence',) Add Absence
+                    form(action=`/student/${id}/absence`, method='POST')
+                        .form-group
+                            label.control-label(for='absencedate') Date of Absence: 
+                            input#absencedate.form-control(type='date', name='absencedate', required='')
+                        //- .form-group
+                        //-     label.control-label(for='studentid') Student ID: 
+                        //-     input#studentid.form-control(type='text', name='studentid', required='')
+                        .form-group
+                            label.control-label(for='absencetype') Type of Absence: 
+                            select#absencetype.form-control(name='absencetype', required='')
+                                option(value='Unexcused') Unexcused
+                                br
+                                option(value='Excused') Excused
+                        .form-group.text-center
+                            p
+                            button.btn.btn-primary(type='submit', name='submitabsence',) Add Absence
                 .col-md-4
             .row

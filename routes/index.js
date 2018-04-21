@@ -34,10 +34,9 @@ router.get('/student', function(req, res, next) {
   res.render('addstudent', { title: 'Add Student to Household' });
 });
 
+//get student details and household details
 // the 0 is a placeholder for :studentid or :householdid
 router.get('/student/:studentId', function(req, res, next) {
- 
-  
     //this is how to extract the :studentId from url
     const studentId = req.params.studentId;
     //find household by id result is the result of the search
@@ -46,41 +45,30 @@ router.get('/student/:studentId', function(req, res, next) {
       if(err){
         sendJsonResponse(res, 400, err);
       }else{
-        console.log(result);
-        res.render('studentdetails', { title: 'Student Details', student: result});
+        console.log(result + " Student found");
+        allSchemas.absence.find({studentID: studentId}, function(err, foundAbsences){
+
+          if(err){
+            console.log("error finding absences " + err);
+          }else{
+            console.log(foundAbsences + " Absences found");
+            allSchemas.aftercare.find({studentID: studentId}, function(err, foundAftercares){
+
+              if(err){
+                console.log("error finding aftercares " + err);
+              }else{
+                console.log(foundAftercares + " Aftercares found");
+                res.render('studentdetails', { title: 'Student Details', student: result, absences: foundAbsences, aftercares: foundAftercares});
+              }
+            });
+          }
+        });   
       }
     });
-    
-
 });
 
-// router.get('/household/0', function(req, res, next) {
-//   res.render('householddetails', { title: 'Household Details' });
-// });
-
-router.get('/bill/0', function(req, res, next) {
-  res.render('billdetails', { title: 'Itemized Bill' });
-});
-
-//forms to add an absence, aftercare hours, or bill, again 0 is a placeholder for the student or household id
-router.get('/student/0/absence', function(req, res, next) {
-  res.render('absenceadd', { title: 'Add Absence to Student' });
-});
-
-router.get('/student/0/aftercare', function(req, res, next) {
-  res.render('aftercareadd', { title: 'Add Aftercare Time to Student' });
-});
-
-
-router.get('/household/bill', function(req, res, next) {
-  res.render('billadd', { title: 'Add Bill to Household' });
-    //this is how to extract the :householdId from url
-    const householdId = req.params.householdId;
-
-});
-
+//Show household details page for :householdId
 router.get('/household/:householdId', function(req, res, next) {
-  
   //this is how to extract the :householdId from url
   const householdId = req.params.householdId;
   //find household by id result is the result of the search
@@ -108,21 +96,116 @@ router.get('/household/:householdId', function(req, res, next) {
           
         }
       });
-      
     }
   });
+});
 
+// router.get('/household/0', function(req, res, next) {
+//   res.render('householddetails', { title: 'Household Details' });
+// });
 
+router.get('/bill/:billId', function(req, res, next) {
+  res.render('billdetails', { title: 'Itemized Bill' });
+});
+
+//forms to add an absence, aftercare hours, or bill, again 0 is a placeholder for the student or household id
+router.get('/student/:studentId/absence', function(req, res, next) {
+  res.render('absenceadd', { title: 'Add Absence to Student', id: req.params.studentId });
+});
+
+router.get('/student/:studentId/aftercare', function(req, res, next) {
+  res.render('aftercareadd', { title: 'Add Aftercare Time to Student', id: req.params.studentId  });
+});
+
+router.get('/household/bill', function(req, res, next) {
+  res.render('billadd', { title: 'Add Bill to Household' });
 
 
 });
 
+router.get('/household/:householdId/addstudent', function(req, res, next){
+  console.log("inside get for /household/householdId/addstudent");
+
+  res.render('householdaddstudent', { title: "Add Student to Household: " + req.params.householdId, householdid: req.params.householdId});
+});
+
+
+
+//form to create a new username/password
 router.get('/createlogin', function(req, res, next) {
   res.render('createlogin', { title: 'Create Login' });
 });
 
 // END OF GETS
-//POSTS
+
+//POSTS BEGIN
+
+//create a new aftercare ticket for specific student
+router.post('/student/:studentid/aftercare', function(req, res, next) {
+  console.log("in post router for /student/add/aftercare");
+  var newAftercare = new allSchemas.aftercare({
+    studentID: req.params.studentid,
+    time: req.body.aftercaretime,
+    date: req.body.aftercaredate
+  }); 
+  
+  newAftercare.save().then(result=>{
+    console.log(result + " aftercare created");
+  });
+    //bring user back to the student they came from
+  res.redirect('/student/' + req.params.studentid);
+});
+
+//create an absence for specific student
+router.post('/student/:studentid/absence', function(req, res, next) {
+  console.log("in post router for /student/add/absence");
+  var newAbsence = new allSchemas.absence({
+    studentID: req.params.studentid,
+    absenceType: req.body.absencetype,
+    dateAbsent: req.body.absencedate
+  }); 
+  
+  newAbsence.save().then(result=>{
+    console.log(result + " aftercare created");
+  });
+  //bring user back to the student they came from
+  res.redirect('/student/' + req.params.studentid);
+});
+
+
+// the student/add/* allow you to enter the student ID manually, may put these on the main switchboard later
+//
+router.post('/student/add/aftercare', function(req, res, next) {
+  console.log("in post router for /student/add/aftercare");
+  var newAftercare = new allSchemas.aftercare({
+    studentID: req.body.studentid,
+    time: req.body.aftercaretime,
+    date: req.body.aftercaredate
+  }); 
+  
+  newAftercare.save().then(result=>{
+    console.log(result + " aftercare created");
+  });
+  //bring user back to the create aftercare form
+  res.redirect('/student/add/aftercare');
+});
+router.post('/student/add/absence', function(req, res, next) {
+  console.log("in post router for /student/add/absence");
+  var newAbsence = new allSchemas.absence({
+    studentID: req.body.studentid,
+    dateAbsent: req.body.absencedate,
+    absenceType: req.body.absencetype
+  }); 
+  
+  newAbsence.save().then(result=>{
+    console.log(result + " absence created");
+  });
+  //bring user back to the create absence form
+  res.redirect('/student/add/absence');
+});
+
+
+//create a new bill
 router.post('/household/bill', function(req, res, next){
   var newBill = new allSchemas.bill({
     householdID: req.body.householdid ,
@@ -139,7 +222,7 @@ router.post('/household/bill', function(req, res, next){
 
 });
 
-
+//submitting form to create a new username and password
 router.post('/createlogin', function(req, res, next){
 
   var newLogin = new allSchemas.login({
@@ -151,6 +234,7 @@ router.post('/createlogin', function(req, res, next){
   });
 });
 
+//logging in
 router.post('/login', function(req, res, next){
   var username = req.body.username;
   var password = req.body.password;
@@ -168,6 +252,7 @@ router.post('/login', function(req, res, next){
 
 });
 
+//search for student by studentID number or Firstname Lastname
 router.post('/studentsearch', function(req, res, next){
   //get search term from searchbox
   var searchTerm = req.body.searchTerm;
@@ -195,7 +280,7 @@ router.post('/studentsearch', function(req, res, next){
 });
 
 
-//COMPLETE
+//search for household by HouseholdID number or Firstname Lastname
 router.post('/householdsearch', function(req, res, next){
     //get search term from searchbox
     var searchTerm = req.body.searchTerm;
@@ -288,7 +373,7 @@ router.post('/household', function(req, res, next){
 });
 
 
-//COMPLETE
+//create a new student and add to existing household
 router.post('/student', function(req, res, next) {
 
   //Create a student
@@ -305,6 +390,27 @@ router.post('/student', function(req, res, next) {
   myStudent.save().then(result=> {
     console.log(result);
   }).catch(err => console.log(err));
+});
+
+//create a new student from the household details page button ---> household ID already known
+router.post('/household/:householdId/addstudent', function(req, res, next) {
+
+  //Create a student
+  var myStudent = new allSchemas.student({
+    studentFirstName: req.body.studentfirstname,
+    studentLastName: req.body.studentlastname,
+    householdID: req.params.householdId,
+    aftercare:  req.body.aftercare,
+    programID:  req.body.programid,
+    notes:  req.body.notes,
+    dateOfBirth:  req.body.dateofbirth
+  });
+  //Save student
+  myStudent.save().then(result=> {
+    console.log(result);
+  }).catch(err => console.log(err));
+
+  res.redirect('/household/' + req.params.householdId);
 });
 
 
