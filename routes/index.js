@@ -11,7 +11,7 @@ function isNumeric(n) {
 };
 /* ALL GETS */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Index' });
+  res.render('login', { title: 'Login' });
 });
 
 router.get('/search', function(req, res, next) {
@@ -19,10 +19,13 @@ router.get('/search', function(req, res, next) {
 });
 
 
-router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Login' });
+router.get('/index', function(req, res, next) {
+  res.render('index', { title: 'Home' });
 });
 
+router.get('/home', function(req, res, next) {
+  res.render('index', { title: 'Home' });
+});
 router.get('/household', function(req, res, next) {
   res.render('createhousehold', { title: 'Register New Household' });
 });
@@ -92,13 +95,46 @@ router.get('/household/:householdId', function(req, res, next) {
       res.render('householddetails', { title: 'Household Details', household: result});
     }
   });
-  
-  
+
+
+
 
 });
+
+router.get('/createlogin', function(req, res, next) {
+  res.render('createlogin', { title: 'Create Login' });
+});
+
 // END OF GETS
 //POSTS
 
+router.post('/createlogin', function(req, res, next){
+
+  var newLogin = new allSchemas.login({
+    username: req.body.username,
+    password: req.body.password
+  });
+  newLogin.save().then(result=>{
+    console.log(result);
+  });
+});
+
+router.post('/login', function(req, res, next){
+  var username = req.body.username;
+  var password = req.body.password;
+
+  console.log("Username: " + username + " Password: " + password);
+
+  allSchemas.login.findOne( { username: req.body.username, password: req.body.password} ).exec(function(err, result){
+    if(err){
+      sendJsonResponse(res, 400, err);
+    }else{
+      console.log(result + " Found result");
+      res.redirect('/home');
+    }
+  });
+
+});
 
 router.post('/studentsearch', function(req, res, next){
   //get search term from searchbox

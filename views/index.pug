@@ -4,22 +4,25 @@ block content
   .card
     h4.card-header.text-center= title
     .card-body
-          .col-md-4
-          .col-md-4
-            form(action='/householdsearch', method='POST')
+      .row
+          .col-md-6
+            form.form-inline(action='/householdsearch', method='POST' style="padding-bottom:1.2rem ")
               .form-row
-                .form-group
-                  label.control-label(for='searchTerm') Household Search:
-                  input#searchTerm.form-control(type='text', name='searchTerm', required='' placeholder='Search for Household')
-                .form-group
-                  input#submit.form-control.btn.btn-primary.btn-md(type='submit', value='Search')
+                  .form-group
+                    input#searchTerm.form-control(type='text', name='searchTerm', required='' placeholder='Search for Household')
+                    input#submit.form-control.btn.btn-primary.btn-md(type='submit', value='Search') 
+          .col-md-6 
+            button.btn.btn-success.btn-md Add Student to Household
+      .row
+          .col-md-6
+              form.form-inline(action='/studentsearch', method='POST')
+                .form-row
+                  .form-group
+                    input#searchTerm.form-control(type='text', name='searchTerm', required='' placeholder='Search for Student')
+                    input#submit.form-control.btn.btn-primary.btn-md(type='submit', value='Search')
+          .col-md-6
+            button.btn.btn-success.btn-md Register New Household
 
-            form(action='/studentsearch', method='POST')
-              .form-row
-                .form-group
-                  label.control-label(for='searchTerm') Student Search:
-                  input#searchTerm.form-control(type='text', name='searchTerm', required='' placeholder='Search for Student')
-                .form-group
-                  input#submit.form-control.btn.btn-primary.btn-md(type='submit', value='Search')
-          .col-md-4
+              
+
 

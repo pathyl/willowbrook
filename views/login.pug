@@ -1,23 +1,48 @@
-extends layout
+doctype html
+html
+  head
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css', integrity='sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4', crossorigin='anonymous')
+    link(rel='stylesheet', href="/stylesheets/style.css")
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js', integrity='sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ', crossorigin='anonymous')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js', integrity='sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm', crossorigin='anonymous')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js')
+    title Home
+  body
+    .container-fluid
+      nav.nav.navbar-light.bg-mine.navbar-expand-sm.py-md-3.navbar-fixed-top.justify-content-center
+        a.navbar-brand Willowbrook Information System
+        ul.navbar-nav
+          li.nav-item
+            a.nav-link(href='/') Login
 
-block content
-  .card
-    h4.card-header.text-center= title
-    .card-body
 
-        .form-row
-          .col-md-4
-          .col-md-4
-            form(action='/login', method='POST')
-              .form-group
-                label.control-label(for='username') Username: 
-                input#studentfirstname.form-control(type='text', name='username', required='' placeholder='Username')
-              .form-group
-                label.control-label(for='password') Password: 
-                input#password.form-control(type='password', name='studentlastname', required='' placeholder='Password')
-              .form-group.text-center
-                button.btn.btn-danger(type='submit', name='loginforgot',) Forgot Password
-                p
-                button.btn.btn-primary(type='submit', name='loginsubmit',) Login
-          .col-md-4
-        .row
+
+      .row
+        .col-md-4
+        .col-md-4
+            .card
+              h4.card-header.text-center= title
+              .card-body
+                .row
+                  .col-md-4
+                  .col-md-4
+                    form(action='/login', method='POST')
+                      .form-row
+                        .col-auto
+                        .col-auto
+                          .form-group
+                            input#studentfirstname.form-control(type='text', name='username', required='' placeholder='Username')
+                          .form-group
+                            input#password.form-control(type='password', name='password', required='' placeholder='Password')
+                          .form-group.text-center
+                            //button.btn.btn-danger(type='submit', name='loginforgot',) Forgot Password
+                            p
+                            button.btn.btn-primary(type='submit', name='loginsubmit') Login
+                        .col-auto
+                        
+                  .col-md-4
+        .col-md-4
+
+
+  
