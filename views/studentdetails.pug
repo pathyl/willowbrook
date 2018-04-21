@@ -11,24 +11,25 @@ block content
                         tbody
                             tr
                             th(scope='row') Student Name:
-                            td Loretta
-                            td Gartman
+                            td #{student.studentFirstName}
+                            td #{student.studentLastName}
                             tr
                             th(scope='row') Student ID:
-                            td ------
+                            td #{student.studentID}
                             td
                             tr
                             th(scope='row') Household ID:
-                            td ------
+                            td #{student.householdID}
                             td
-                                button.btn.btn-info.btn-sm View Household
+                                form(action=`/household/${student.householdID}`, method='GET')
+                                    button#submit.btn.btn-info.btn-sm(type='submit',) View Household
                             tr
                             th(scope='row') Aftercare:
-                            td No
+                            td #{student.aftercare}
                             td
                             tr
                             th(scope='row') Program:
-                            td Pre-K
+                            td #{student.programID}
                             td                  
                 .col-md-6
                     .row

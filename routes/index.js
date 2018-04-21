@@ -6,11 +6,18 @@ var shortid = require('../node_modules/shortid');
 var bodyParser = require('body-parser');
 
 shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_');
-
+function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+};
 /* ALL GETS */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Index' });
 });
+
+router.get('/search', function(req, res, next) {
+  res.render('search', { title: 'Search' });
+});
+
 
 router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Login' });
@@ -26,7 +33,21 @@ router.get('/student', function(req, res, next) {
 
 // the 0 is a placeholder for :studentid or :householdid
 router.get('/student/:studentId', function(req, res, next) {
-  res.render('studentdetails', { title: 'Student Details' });
+ 
+  
+    //this is how to extract the :studentId from url
+    const studentId = req.params.studentId;
+    //find household by id result is the result of the search
+    allSchemas.student.findOne({studentID: studentId})
+    .exec(function(err, result){
+      if(err){
+        sendJsonResponse(res, 400, err);
+      }else{
+        console.log(result);
+        res.render('studentdetails', { title: 'Student Details', student: result});
+      }
+    });
+    
 
 });
 
@@ -77,10 +98,36 @@ router.get('/household/:householdId', function(req, res, next) {
 });
 // END OF GETS
 //POSTS
-function isNumeric(n) {
-  return !isNaN(parseFloat(n)) && isFinite(n);
-};
 
+
+router.post('/studentsearch', function(req, res, next){
+  //get search term from searchbox
+  var searchTerm = req.body.searchTerm;
+  console.log(searchTerm + " this is the searchTerm");
+
+  if( isNumeric(searchTerm) ){
+    //if it is numeric expect a householdID number
+    res.redirect('/student/' + searchTerm);
+
+  }else{
+    //if it's not numeric then expect a full name "Patrick Hyland"
+    var splitString = searchTerm.split(" ");
+    var first = splitString[0];
+    var last = splitString[1];
+    allSchemas.student.findOne( { studentFirstName: first, studentLastName: last} ).exec(function(err, result){
+      if(err){
+        sendJsonResponse(res, 400, err);
+      }else{
+        console.log(result + " Found results");
+        res.redirect('/student/' + result.studentID);
+      }
+  });
+  }
+    
+});
+
+
+//COMPLETE
 router.post('/householdsearch', function(req, res, next){
     //get search term from searchbox
     var searchTerm = req.body.searchTerm;
@@ -105,7 +152,6 @@ router.post('/householdsearch', function(req, res, next){
     });
     }
       
-
   });
 
 
