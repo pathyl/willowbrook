@@ -6,3 +6,7 @@ createhousehold layout complete
 householddetails complete
 studentdetails complete
 add student to household complete
+
+to be done:
+finish student details page to show absences, add absence button, show aftercare info, add aftercare time button
+finish household details page to show bills, calculate bills on page load, show students in household with view student button

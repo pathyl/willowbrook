@@ -91,8 +91,18 @@ router.get('/household/:householdId', function(req, res, next) {
     if(err){
       sendJsonResponse(res, 400, err);
     }else{
-      console.log(result);
-      res.render('householddetails', { title: 'Household Details', household: result});
+      console.log(result + "Household Found");
+
+      allSchemas.student.find({householdID: result.householdID},function(err, foundStudents){
+        console.log("Entering student finder");
+        if(err){
+          console.log(err + " Error finding students")
+        }else{
+          console.log("Found these students:" + foundStudents)
+          res.render('householddetails', { title: 'Household Details', household: result, students: foundStudents});
+        }
+      });
+      
     }
   });
 

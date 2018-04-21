@@ -55,7 +55,7 @@ block content
 
                     .row
                         .card.border-secondary.mb-3
-                            h5.card-header.text-center Students in Household
+                            h5.card-header.text-center Students
                             .card-body
                                 .table-wrapper
                                     table.table.table-striped
@@ -64,9 +64,15 @@ block content
                                             th(scope='col') Student Name
                                             th(scope='col') 
                                         tbody
-                                            each i in students
-                                                tr
-                                                td= i.studentFirstName + " " + i.studentLastName
-                                                td
-                                                    a.btn.btn-info.btn-sm(href=`/student/${i.studentID}`) View Student
-
+                                            tr
+                                            td Loretta Gartman
+                                            td
+                                                button.btn.btn-info.btn-sm View Student
+                                            tr
+                                            td Shayna Gartman
+                                            td
+                                                button.btn.btn-info.btn-sm View Student
+                                            tr
+                                            td Delena Gartman
+                                            td
+                                                button.btn.btn-info.btn-sm View Student
