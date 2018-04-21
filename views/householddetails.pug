@@ -40,18 +40,14 @@ block content
                                             th(scope='col') Amount
                                             th(scope='col') Paid
                                         tbody
-                                            tr
-                                            td 2/01/2018
-                                            td $350
-                                            td No
-                                            td
-                                                button.btn.btn-info.btn-sm View Bill
-                                            tr
-                                            td 1/01/2018
-                                            td $350
-                                            td Yes
-                                            td
-                                                button.btn.btn-info.btn-sm View Bill
+                                            if bills
+                                                each b in bills
+                                                    tr
+                                                    td= b.dueDate
+                                                    td= b.amount
+                                                    td= b.discount
+                                                    td
+                                                        a.btn.btn-info.btn-sm(href=`/household/bill/${b.billID}`) View Bill  
 
                     .row
                         .card.border-secondary.mb-3
@@ -64,9 +60,10 @@ block content
                                             th(scope='col') Student Name
                                             th(scope='col') 
                                         tbody
-                                            each i in students
-                                                tr
-                                                td= i.studentFirstName + " " + i.studentLastName
-                                                td
-                                                    a.btn.btn-info.btn-sm(href=`/student/${i.studentID}`) View Student
+                                            if students
+                                                each i in students
+                                                    tr
+                                                    td= i.studentFirstName + " " + i.studentLastName
+                                                    td
+                                                        a.btn.btn-info.btn-sm(href=`/student/${i.studentID}`) View Student
 

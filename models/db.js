@@ -111,13 +111,19 @@ const studentSchema = new mongoose.Schema({
 	});
 
 const billSchema = new mongoose.Schema({
+	billID: {type: Number},
 	householdID: {type: Number},
 	dueDate: {type: String},
 	paid: {type: String},
 	amount: {type: Number},
 	discount: {type: String}
 });
-
+billSchema.plugin(autoIncrement.plugin, {
+	model: 'billSchema',
+	field: 'billID',
+	startAt: 500,
+	incrementBy: 1
+});
 const householdSchema = new mongoose.Schema({
 	parentFirstName: {type: String},
 	parentLastName: {type: String},

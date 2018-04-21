@@ -71,14 +71,12 @@ router.get('/student/0/aftercare', function(req, res, next) {
   res.render('aftercareadd', { title: 'Add Aftercare Time to Student' });
 });
 
-router.get('/household/0/bill', function(req, res, next) {
-  res.render('billadd', { title: 'Add Bill to Household' });
-});
 
-router.get('/household/0/bill', function(req, res, next) {
+router.get('/household/bill', function(req, res, next) {
   res.render('billadd', { title: 'Add Bill to Household' });
     //this is how to extract the :householdId from url
     const householdId = req.params.householdId;
+
 });
 
 router.get('/household/:householdId', function(req, res, next) {
@@ -99,7 +97,15 @@ router.get('/household/:householdId', function(req, res, next) {
           console.log(err + " Error finding students")
         }else{
           console.log("Found these students:" + foundStudents)
-          res.render('householddetails', { title: 'Household Details', household: result, students: foundStudents});
+          allSchemas.bill.find({householdID: result.householdID}, function(err, foundBills){
+            console.log("Entering bill finder");
+            if(err){
+              console.log(err + " Error finding bills")
+            }else{
+              res.render('householddetails', { title: 'Household Details', household: result, students: foundStudents, bills: foundBills});
+            }
+          });
+          
         }
       });
       
@@ -117,6 +123,22 @@ router.get('/createlogin', function(req, res, next) {
 
 // END OF GETS
 //POSTS
+router.post('/household/bill', function(req, res, next){
+  var newBill = new allSchemas.bill({
+    householdID: req.body.householdid ,
+    dueDate: req.body.duedate,
+    paid: req.body.paid,
+    amount: req.body.amount,
+    discount: req.body.discount
+  });
+
+  newBill.save().then(result=>{
+    console.log(result + " bill added")
+  });
+  res.redirect('/household/bill');
+
+});
+
 
 router.post('/createlogin', function(req, res, next){
 
@@ -125,7 +147,7 @@ router.post('/createlogin', function(req, res, next){
     password: req.body.password
   });
   newLogin.save().then(result=>{
-    console.log(result);
+    console.log(result + " login added");
   });
 });
 

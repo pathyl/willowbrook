@@ -3,3 +3,33 @@ block content
     .card
         h4.card-header.text-center
         .card-body
+            .form-row
+                .col-md-4
+                .col-md-4
+                    form(action='/household/bill', method='POST')
+                        .form-group
+                            label.control-label(for='duedate') Due Date: 
+                            input#duedate.form-control(type='date', name='duedate', required='')
+                        .form-group
+                            label.control-label(for='householdid') Household ID: 
+                            input#householdid.form-control(type='text' name='householdid' required='')
+                        .form-group
+                            label.control-label(for='paid') Paid: 
+                            select#paid.form-control(name='paid', required='')
+                                option(value='Yes') Yes
+                                br
+                                option(value='No') No
+                        .form-group
+                            label.control-label(for='amount') Amount: 
+                            input#amount.form-control(type='text' name='amount' required='')
+                        .form-group
+                            label.control-label(for='discount') Discount: 
+                            select#discount.form-control(name='discount', required='')
+                                option(value='Yes') Yes
+                                br
+                                option(value='No') No
+                        .form-group.text-center
+                            p
+                            button.btn.btn-primary(type='submit', name='submitbill',) Add Bill to Household
+                .col-md-4
+            .row
