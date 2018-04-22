@@ -1,10 +1,14 @@
 https://git.heroku.com/warm-taiga-71837.git
 
 studentdetails: finished
-
-
-
+search: finished
+login: maybe improve
 
 householddetails:
 view bill button should redirect to itemized bill page /household/bill/:billdetails
 calculate bills on page load
+
+
+
+maybe:
+update and delete students and households 

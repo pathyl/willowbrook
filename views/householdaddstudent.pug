@@ -39,9 +39,11 @@ block content
                 option(value='Aftercare Only') Aftercare Only
                 br
             div.form-group
-              div.form-check
-                label.control-label.form-check-label(for='aftercare') Aftercare (Yes/No):
-                input#aftercare.form-control.form-check-input(type='checkbox', name='aftercare', required='')
+              label.control-label.form-check-label(for='aftercare') Aftercare:
+              select#aftercare.form-control(name='aftercare', required='')
+                option(value="Yes") Yes
+                br
+                option(value="No") No
             br
             
           .col-md-4
