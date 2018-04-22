@@ -259,8 +259,21 @@ router.post('/studentsearch', function(req, res, next){
   console.log(searchTerm + " this is the searchTerm");
 
   if( isNumeric(searchTerm) ){
-    //if it is numeric expect a householdID number
-    res.redirect('/student/' + searchTerm);
+    //if it is numeric expect a studentID number
+    //check to see if that student exists
+    allSchemas.student.findOne( { studentID: searchTerm}).exec(function(err, result){
+      if(err){
+        console.log(err + " error finding a student")
+      }else{
+        if(result != null){
+          res.redirect('/student/' + searchTerm);
+        }else{
+          console.log("couldn't find a student by that number");
+          res.render('index', { title: 'Could not find a student with that ID' });
+        }
+      }
+    });
+    
 
   }else{
     //if it's not numeric then expect a full name "Patrick Hyland"
@@ -271,8 +284,15 @@ router.post('/studentsearch', function(req, res, next){
       if(err){
         sendJsonResponse(res, 400, err);
       }else{
-        console.log(result + " Found results");
-        res.redirect('/student/' + result.studentID);
+        if(result != null){
+          console.log(result + " Found results");
+          res.redirect('/student/' + result.studentID);
+        }else{
+          console.log("couldn't find a student by that name");
+          res.render('index', { title: 'Could not find a student with that Name' });
+        }
+        
+        
       }
   });
   }
@@ -288,7 +308,20 @@ router.post('/householdsearch', function(req, res, next){
 
     if( isNumeric(searchTerm) ){
       //if it is numeric expect a householdID number
-      res.redirect('/household/' + searchTerm);
+      //check to see if it exists
+      allSchemas.household.findOne( { householdID: searchTerm}).exec(function(err, result){
+        if(err){
+          console.log(err + " error when searching for household by ID number");
+        }else{
+          if(result != null){
+            res.redirect('/household/' + searchTerm);
+          }else{
+            console.log("couldn't find a household by that number");
+            res.render('index', { title: 'Could not find a household with that ID' });
+          }
+        }
+      });
+      
 
     }else{
       //if it's not numeric then expect a full name "Patrick Hyland"
@@ -298,9 +331,16 @@ router.post('/householdsearch', function(req, res, next){
       allSchemas.household.findOne( { parentFirstName: first, parentLastName: last} ).exec(function(err, result){
         if(err){
           sendJsonResponse(res, 400, err);
+          res.redirect('/index');
         }else{
-          console.log(result + " Found results");
-          res.redirect('/household/' + result.householdID);
+          if(result != null){
+            console.log(result + " Found results");
+            res.redirect('/household/' + result.householdID);
+          }else{
+            console.log("couldn't find a household with that name");
+            res.render('index', { title: 'Could not find a household with that name' });
+          }
+          
         }
     });
     }
