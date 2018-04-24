@@ -1,0 +1,72 @@
+extends layout
+block content
+    .card
+        h4.card-header.text-center
+        .card-body
+            .row
+                .col-md-6
+                    h5.card-header.text-center= title
+                    .card-body
+                      table.table.table-striped
+                        tbody
+                            tr
+                            th(scope='row') Student Name:
+                            td #{student.studentFirstName}
+                            td #{student.studentLastName}
+                            tr
+                            th(scope='row') Student ID:
+                            td #{student.studentID}
+                            td
+                            tr
+                            th(scope='row') Household ID:
+                            td #{student.householdID}
+                            td
+                                form(action=`/household/${student.householdID}`, method='GET')
+                                    button#submit.btn.btn-info.btn-sm(type='submit',) View Household
+                            tr
+                            th(scope='row') Aftercare:
+                            td #{student.aftercare}
+                            td
+                            tr
+                            th(scope='row') Program:
+                            td #{student.programID}
+                            td
+                            tr
+                            th(scope='row')
+                            td 
+                                a.btn.btn-info.btn-sm(href=`/student/${student.studentID}/absence`) Add Absence 
+                            td
+                                a.btn.btn-info.btn-sm(href=`/student/${student.studentID}/aftercare`) Add Aftercare Time
+
+                .col-md-6
+                    .row
+                        .card.border-secondary.mb-3
+                            h5.card-header.text-center Absences
+                            .card-body
+                                .table-wrapper
+                                    table.table.table-striped
+                                        thead
+                                            tr
+                                            th(scope='col') Date
+                                            th(scope='col') Type
+                                        tbody
+                                            if absences
+                                                each a in absences
+                                                    tr
+                                                    td= a.dateAbsent
+                                                    td= a.absenceType
+                    .row
+                        .card.border-secondary.mb-3
+                            h5.card-header.text-center Aftercare Info
+                            .card-body
+                                .table-wrapper
+                                    table.table.table-striped
+                                        thead
+                                            tr
+                                            th(scope='col') Date
+                                            th(scope='col') Time Blocks (15 minute)
+                                        tbody
+                                            each c in aftercares
+                                                tr
+                                                td= c.date
+                                                td= c.time
