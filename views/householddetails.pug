@@ -1,39 +1,38 @@
 extends layout
 block content
-    .card
-        h4.card-header.text-center
-        .card-body
-            .row
-                .col-md-6
-                    h5.card-header.text-center= title
-                    .card-body
-                      table.table.table-striped
-                        tbody
-                            tr
-                            th(scope='row') Parent Name:
-                            td #{household.parentFirstName} #{household.parentLastName}
-                            tr
-                            th(scope='row') Household ID:
-                            td #{household.householdID}
-                            tr
-                            th(scope='row') Address:
-                            td #{household.streetAddress}, #{household.city}, #{household.state}, #{household.zip}
-                            tr
-                            th(scope='row') Phone:
-                            td #{household.phone}
-                            tr
-                            th(scope='row') Alternate Phone:
-                            td #{household.altphone}
-                            tr
-                            th(scope='row') Billing Cycle:
-                            td #{household.billingCycle}
-                            tr
-                            th(scope='row')
-                            td
-                                a.btn.btn-info.btn-sm(href=`/household/${household.householdID}/addstudent`) Add Student to this Household                          
-                .col-md-6
+        .row
+            .col
+                .row
+                    .card.w-80
+                        h5.card-header.text-center= title
+                        .card-body.table-wrapper
+                            table.table.table-striped
+                                tbody
+                                    tr
+                                    th(scope='row') Parent Name:
+                                    td #{household.parentFirstName} #{household.parentLastName}
+                                    tr
+                                    th(scope='row') Household ID:
+                                    td #{household.householdID}
+                                    tr
+                                    th(scope='row') Address:
+                                    td #{household.streetAddress}, #{household.city}, #{household.state}, #{household.zip}
+                                    tr
+                                    th(scope='row') Phone:
+                                    td #{household.phone}
+                                    tr
+                                    th(scope='row') Alternate Phone:
+                                    td #{household.altphone}
+                                    tr
+                                    th(scope='row') Billing Cycle:
+                                    td #{household.billingCycle}
+                                    tr
+                                    th(scope='row')
+                                    td
+                                        a.btn.btn-info.btn-sm(href=`/household/${household.householdID}/addstudent`) Add Student to this Household                                                                                   
+            .col
                     .row
-                        .card.border-secondary.mb-3
+                        .card.card-wrapper
                             h5.card-header.text-center Bills
                             .card-body
                                 .table-wrapper
@@ -44,6 +43,10 @@ block content
                                             th(scope='col') Amount
                                             th(scope='col') Paid
                                         tbody
+                                            tr
+                                            td 1/1/2018
+                                            td $350.00
+                                            td Yes
                                             if bills
                                                 each b in bills
                                                     tr
@@ -54,7 +57,7 @@ block content
                                                         a.btn.btn-info.btn-sm(href=`/household/bill/${b.billID}`) View Bill  
 
                     .row
-                        .card.border-secondary.mb-3
+                        .card.card-wrapper
                             h5.card-header.text-center Students in Household
                             .card-body
                                 .table-wrapper
