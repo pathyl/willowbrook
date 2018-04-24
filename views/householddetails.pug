@@ -5,62 +5,36 @@ block content
                 .row
                     .card.w-80
                         h5.card-header.text-center= title
-                        .card-body.table-wrapper
-                            table.table.table-striped
-                                tbody
-                                    tr
-                                    th(scope='row') Parent Name:
-                                    td #{household.parentFirstName} #{household.parentLastName}
-                                    tr
-                                    th(scope='row') Household ID:
-                                    td #{household.householdID}
-                                    tr
-                                    th(scope='row') Address:
-                                    td #{household.streetAddress}, #{household.city}, #{household.state}, #{household.zip}
-                                    tr
-                                    th(scope='row') Phone:
-                                    td #{household.phone}
-                                    tr
-                                    th(scope='row') Alternate Phone:
-                                    td #{household.altphone}
-                                    tr
-                                    th(scope='row') Billing Cycle:
-                                    td #{household.billingCycle}
-                                    tr
-                                    th(scope='row')
-                                    td
-                                        a.btn.btn-info.btn-sm(href=`/household/${household.householdID}/addstudent`) Add Student to this Household                                                                                   
+                        .card-body
+                                table.table.table-striped
+                                    tbody
+                                        tr
+                                        th(scope='row') Parent Name:
+                                        td #{household.parentFirstName} #{household.parentLastName}
+                                        tr
+                                        th(scope='row') Household ID:
+                                        td #{household.householdID}
+                                        tr
+                                        th(scope='row') Address:
+                                        td #{household.streetAddress}, #{household.city}, #{household.state}, #{household.zip}
+                                        tr
+                                        th(scope='row') Phone:
+                                        td #{household.phone}
+                                        tr
+                                        th(scope='row') Alternate Phone:
+                                        td #{household.altphone}
+                                        tr
+                                        th(scope='row') Billing Cycle:
+                                        td #{household.billingCycle}
+                                        tr
+                                        th(scope='row')
+                                        td
+                                            a.btn.btn-info.btn-sm(href=`/household/${household.householdID}/addstudent`) Add Student to this Household                                                                                   
             .col
                     .row
                         .card.card-wrapper
-                            h5.card-header.text-center Bills
-                            .card-body
-                                .table-wrapper
-                                    table.table.table-striped
-                                        thead
-                                            tr
-                                            th(scope='col') Due
-                                            th(scope='col') Amount
-                                            th(scope='col') Paid
-                                        tbody
-                                            tr
-                                            td 1/1/2018
-                                            td $350.00
-                                            td Yes
-                                            if bills
-                                                each b in bills
-                                                    tr
-                                                    td= b.dueDate
-                                                    td= b.amount
-                                                    td= b.discount
-                                                    td
-                                                        a.btn.btn-info.btn-sm(href=`/household/bill/${b.billID}`) View Bill  
-
-                    .row
-                        .card.card-wrapper
                             h5.card-header.text-center Students in Household
-                            .card-body
-                                .table-wrapper
+                            .card-body.table-wrapper
                                     table.table.table-striped
                                         thead
                                             tr
@@ -73,4 +47,60 @@ block content
                                                     td= i.studentFirstName + " " + i.studentLastName
                                                     td
                                                         a.btn.btn-info.btn-sm(href=`/student/${i.studentID}`) View Student
+                            
+                            
+                            
+                            
+
+                    .row
+                        .card.card-wrapper
+                            h5.card-header.text-center Bills
+                            .card-body.table-wrapper
+                                    table.table.table-striped
+                                        thead
+                                            tr
+                                            th(scope='col') Due
+                                            th(scope='col') Amount
+                                            th(scope='col') Paid
+                                        tbody
+                                            tr
+                                            td 1/1/2018
+                                            td $350.00
+                                            td Yes
+                                            tr
+                                            td 1/1/2018
+                                            td $350.00
+                                            td Yes
+                                            tr
+                                            td 1/1/2018
+                                            td $350.00
+                                            td Yes
+                                            tr
+                                            td 1/1/2018
+                                            td $350.00
+                                            td Yes
+                                            tr
+                                            td 1/1/2018
+                                            td $350.00
+                                            td Yes
+                                            tr
+                                            td 1/1/2018
+                                            td $350.00
+                                            td Yes
+                                            tr
+                                            td 1/1/2018
+                                            td $350.00
+                                            td Yes
+                                            tr
+                                            td 1/1/2018
+                                            td $350.00
+                                            td Yes
+                                            if bills
+                                                each b in bills
+                                                    tr
+                                                    td= b.dueDate
+                                                    td= b.amount
+                                                    td= b.discount
+                                                    td
+                                                        a.btn.btn-info.btn-sm(href=`/household/bill/${b.billID}`) View Bill      
 

@@ -28,8 +28,7 @@ body{
   color:black;
 }
 .table-wrapper { 
-  /*height: 15rem;
-  width:23rem; */
+  height: 15rem;
   overflow-y: scroll; 
 }
 .card-wrapper{
