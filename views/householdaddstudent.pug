@@ -6,8 +6,8 @@ block content
     .card-body
       form(action=`/household/${householdid}/addstudent`, method='POST')
         .form-row
-          .col-md-4
-          .col-md-4
+          .col
+          .col
             div.form-group
               label.control-label(for='studentfirstname') Student First Name:
               input#studentfirstname.form-control(type='text', name='studentfirstname', required='' placeholder='Student First Name')
@@ -46,10 +46,10 @@ block content
                 option(value="No") No
             br
             
-          .col-md-4
+          .col
         .row
-          .col-md-4
-          .col-md-4
+          .col
+          .col
             .form-group
               label.control-label(for='notes') Student Notes:
               textarea.form-control(rows='3')
@@ -57,6 +57,6 @@ block content
               input#submit.form-control.btn.btn-primary.btn-md(type='submit', value='Add Student to Household')
               p
               input#reset.form-control.btn.btn-danger.btn-md(type='reset', value='Reset Form')
-          .col-md-4
+          .col
             
 

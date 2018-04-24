@@ -4,8 +4,8 @@ block content
         h4.card-header.text-center
         .card-body
             .form-row
-                .col-md-4
-                .col-md-4
+                .col
+                .col
                     form(action='/household/bill', method='POST')
                         .form-group
                             label.control-label(for='duedate') Due Date: 
@@ -31,5 +31,5 @@ block content
                         .form-group.text-center
                             p
                             button.btn.btn-primary(type='submit', name='submitbill',) Add Bill to Household
-                .col-md-4
+                .col
             .row

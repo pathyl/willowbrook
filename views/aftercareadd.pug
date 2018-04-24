@@ -4,8 +4,8 @@ block content
         h4.card-header.text-center= title
         .card-body
             .form-row
-                .col-md-4
-                .col-md-4
+                .col
+                .col
                     form(action=`/student/${id}/aftercare`, method='POST')
                         .form-group
                             label.control-label(for='aftercaredate') Date of Aftercare: 
@@ -19,5 +19,5 @@ block content
                         .form-group.text-center
                             p
                             button.btn.btn-primary(type='submit', name='submitaftercare',) Add Aftercare Time
-                .col-md-4
+                .col
             .row

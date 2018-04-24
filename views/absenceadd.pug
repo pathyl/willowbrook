@@ -4,8 +4,8 @@ block content
         h4.card-header.text-center= title
         .card-body
             .form-row
-                .col-md-4
-                .col-md-4
+                .col
+                .col
                     form(action=`/student/${id}/absence`, method='POST')
                         .form-group
                             label.control-label(for='absencedate') Date of Absence: 
@@ -22,5 +22,5 @@ block content
                         .form-group.text-center
                             p
                             button.btn.btn-primary(type='submit', name='submitabsence',) Add Absence
-                .col-md-4
+                .col
             .row
