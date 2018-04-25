@@ -3,12 +3,68 @@ https://git.heroku.com/warm-taiga-71837.git
 studentdetails: finished
 search: finished
 
+
+
 householddetails:
 view bill button should redirect to itemized bill page /household/bill/:billdetails
 calculate bills on page load
 
 
 
+on household load
+    if weekly
+        generate weekly bill
+        next bill due .....
+            generate based on current household info
+    if monthly
+        generate monthly bill
+        next bill due ...
+            generate based on current household info
+
+
+temp fee values
+weekly tuition $125/week = $500/month
+aftercare monthly $300/mo
+drop-in hourly $12hr = $3 for each 15 min block
+4 * 15 min blocks in an hour
+
+monthly
+5% discount for paying monthly
+5% discount for more than one child
+due first of the month, sent out 1 week before
+
+weekly
+5% discount for more than one child
+due monday, generated friday before
+
+drop-in aftercare
+charged hourly rate billed weekly
+
+generate one bill per family, listing each student’s charges separately, and an overall total
+
+generate a receipt at the time payments are recorded. 
+This receipt should contain information required for reimbursement requests from different types of dependent care and tuition accounts, including name, location, and
+ federal tax ID number of the school. EIN number example 00-0000000 12-3456789
+ In addition, parents have asked for a separate statement accompanying their bill itemizing all drop-in after-care hours for that statement.
+
+summary monthly report is generated for the Board of Directors from this spreadsheet summarizing fee collections for tuition and after care
+
+Willowbrook Private School               Invoice
+address.                          
+
+
+Bill To: parent info...
+
+StudentName1
+Academic tuition 
+
+due 12/12/2018          Total Due:
+
+
+each student plus subtotal = 4 columns 8 rows
+
 maybe:
 real logins
+print formatting
 update and delete students and households 
+change student/household search to have a search results page instead of using findOne use find() and display all found results

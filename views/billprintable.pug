@@ -1,0 +1,166 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css', integrity='sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4', crossorigin='anonymous')
+    link(rel='stylesheet', href="/stylesheets/style2.css")
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js', integrity='sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ', crossorigin='anonymous')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js', integrity='sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm', crossorigin='anonymous')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js')
+    title Invoice
+  body
+    .container
+        .row
+            .col-xs-12
+                .card.bill-card
+                    .card-header.bill-card-header
+                        .row
+                            table.table
+                                tbody
+                                tr
+                                th(scope='col')
+                                    h2.nowrap Invoice
+                                th(scope='col')
+                                th(scope='col')
+                                th(scope='col')
+                                th(scope='col')
+                                    .nowrap.float-right Date: 12/27/2017
+                                tr
+                                th(scope='col')
+                                th(scope='col')
+                                th(scope='col')
+                                th(scope='col')
+                                th(scope='col')
+                                    .nowrap.float-right Invoice #:223
+                                tr
+
+                    .card-body.bill-card-body.inner-padding
+                        .row
+                            .col-xs-3
+                                .row
+                                    .col-xs-12
+                                        h5 Bill To:
+                                .row
+                                    .col-xs-12
+                                        h5 Cortez Gartman
+                                .row
+                                    .col-xs-12
+                                        h6 456 Jones St
+                                .row
+                                    .col-xs-12
+                                        h6 Lufkin, TX 23943
+                                .row
+                                    .col-xs-12
+                                        h6 926-435-3592    
+                            .col-xs-5.paypad
+                                .row
+                                    .col-xs-12
+                                        h5 Pay To:
+                                .row
+                                    .col-xs-12
+                                        h5 Willowbrook Private School
+                                .row
+                                    .col-xs-12
+                                        h6 3500 S 1st St 
+                                .row
+                                    .col-xs-12
+                                        h6 Lufkin, TX 75904
+                                .row
+                                    .col-xs-12
+                                        h6 (555)-864-3234
+                                .row
+                                    .col-xs-12
+                                        h6 EIN: 12-3456789
+                        .row
+                        table.table.table-striped
+                            tbody
+                            tr
+                            th(scope='col')
+                                h5.nowrap Layna Gartman
+                            th(scope='col')
+                                .nowrap For the month of December 2017
+                            tr
+                            td
+                            td Academic Tuition
+                            td $500
+                            td
+                            tr
+                            td
+                            td Multi-Student Discount
+                            td -$25
+                            td
+                            tr
+                            td
+                            td Monthly Payment Discount
+                            td -$23.75
+                            td
+                            tr
+                            td
+                            td
+                            td.bold Tuition total
+                            td.bold $451.25
+                            tr
+                            td  
+                            td Monthly Aftercare Fees
+                            td $300
+                            td
+                            tr
+                            td
+                            td
+                            td.bold Aftercare total 
+                            td.bold $300
+                            tr
+                            td
+                            td
+                            td.bold.nowrap Layna Gartman Total:
+                            td
+                                h5.bold.underline $751.25
+                            tr
+                            th(scope='col')
+                                h5.nowrap Joseph Gartman
+                            th(scope='col')
+                                .nowrap For the month of December 2017
+                            tr
+                            td
+                            td Academic Tuition
+                            td $500
+                            td
+                            tr
+                            td
+                            td Multi-Student Discount
+                            td -$25
+                            td
+                            tr
+                            td
+                            td Monthly Payment Discount
+                            td -$23.75
+                            td
+                            tr
+                            td
+                            td
+                            td.bold Tuition total
+                            td.bold $451.25
+                            tr
+                            td  
+                            td Monthly Aftercare Fees
+                            td $300
+                            td
+                            tr
+                            td
+                            td
+                            td.bold Aftercare total 
+                            td.bold $300
+                            tr
+                            td
+                            td
+                            td.bold.nowrap Joseph Gartman Total:
+                            td
+                                h5.bold.underline $751.25
+                            tr
+                            td
+                            td
+                            td
+                                h5.bold Grand Total:
+                            td
+                                h4.bold.underline.nowrap $1502.50
+                            td

@@ -1,0 +1,19 @@
+table.table.table-striped
+                tbody
+                    tr
+                    td
+                        h2 Willowbrook Private School
+                    td 
+                    td
+                    td
+                        h2 Invoice
+                    tr
+                    td 
+                    td
+                    td Date:
+                    td 12/12/2018
+                    tr
+                    td Bill to:
+                    td Cortez Gartman
+                    td For the month of:
+                    td January 2018

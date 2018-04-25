@@ -17,6 +17,21 @@ body{
   color: white;
   font-weight:bold;
 }
+
+.bill-card-header{
+  background-color: #e8f0f5 !important;
+  font-weight: normal !important;
+  color: black;
+  padding-left:4rem;
+  padding-top:2rem;
+}
+.bill-card{
+  margin-top:1rem !important;
+}
+.bill-card-body{
+  background-color: white !important;
+  color: black !important;
+}
 .bg-mine{
   background-color:white;
 }
@@ -33,4 +48,22 @@ body{
 }
 .card-wrapper{
   width:23rem;
+}
+.bottom-pad{
+  padding-bottom: 2rem;
+}
+.bold{
+  font-weight:bold;
+}
+.underline{
+  text-decoration:underline;
+}
+.inner-padding{
+  padding-left: 3rem;
+  padding-right: 2rem;
+  padding-top:1.6rem;
+}
+.nowrap{
+  white-space: nowrap;
+  overflow: hidden;
 }

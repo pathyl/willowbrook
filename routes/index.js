@@ -107,7 +107,9 @@ router.get('/household/:householdId', function(req, res, next) {
 router.get('/bill/:billId', function(req, res, next) {
   res.render('billdetails', { title: 'Itemized Bill' });
 });
-
+router.get('/bill/:billId/billprintable', function(req, res, next) {
+  res.render('billprintable', { title: 'Itemized Bill' });
+});
 //forms to add an absence, aftercare hours, or bill, again 0 is a placeholder for the student or household id
 router.get('/student/:studentId/absence', function(req, res, next) {
   res.render('absenceadd', { title: 'Add Absence to Student', id: req.params.studentId });
