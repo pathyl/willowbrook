@@ -4,28 +4,31 @@ block content
   .card
     h4.card-header.text-center= title
     .card-body
-      .row
-          .col
-            form.form-inline(action='/householdsearch', method='POST' style="padding-bottom:1.2rem ")
-              .form-row
-                  .form-group
-                    input#searchTerm.form-control(type='text', name='searchTerm', required='' placeholder='Search for Household')
-                    input#submit.form-control.btn.btn-primary.btn-md(type='submit', value='Search') 
-          .col
-            button.btn.btn-success.btn-md Add Student to Household
-      .row
-          .col
-              form.form-inline(action='/studentsearch', method='POST')
+      .col
+        .row
+            .col
+              form.form-inline.bottom-pad(action='/householdsearch', method='POST')
                 .form-row
-                  .form-group
-                    input#searchTerm.form-control(type='text', name='searchTerm', required='' placeholder='Search for Student')
-                    input#submit.form-control.btn.btn-primary.btn-md(type='submit', value='Search')
+                    .form-group
+                      input#searchTerm.form-control(type='text', name='searchTerm', required='' placeholder='Search for Household')
+                      input#submit.form-control.btn.btn-primary.btn-md(type='submit', value='Search') 
+            .col
+              button.btn.btn-success.btn-md Add Student to Household
+        .row
+            .col
+                form.form-inline.bottom-pad(action='/studentsearch', method='POST')
+                  .form-row
+                    .form-group
+                      input#searchTerm.form-control(type='text', name='searchTerm', required='' placeholder='Search for Student')
+                      input#submit.form-control.btn.btn-primary.btn-md(type='submit', value='Search')
+            .col
+              button.btn.btn-success.btn-md Register New Household
+        .row.bottom-pad
           .col
-            button.btn.btn-success.btn-md Register New Household
-      .row
-        .col
-          a.btn.btn-primary(href="/date") Date Tester
+            a.btn.btn-primary(href="/allstudents") View All Students
+          .col
+            a.btn.btn-primary(href="/allhouseholds") View All Households
 
-              
+                
 
 

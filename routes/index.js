@@ -142,6 +142,27 @@ router.get('/household/:householdId', function(req, res, next) {
 // router.get('/household/0', function(req, res, next) {
 //   res.render('householddetails', { title: 'Household Details' });
 // });
+router.get('/allstudents', function(req,res,next){
+  allSchemas.student.find({}, function(err, foundStudents){
+    if(err){
+      console.log("Error finding all students " + err);
+    }else{
+      res.render('allstudents', {title: 'All Students', students: foundStudents});
+    }
+
+  });
+});
+
+router.get('/allhouseholds', function(req,res,next){
+  allSchemas.household.find({}, function(err, foundHouseholds){
+    if(err){
+      console.log("Error finding all households " + err);
+    }else{
+      res.render('allhouseholds', {title: 'All Households', households: foundHouseholds});
+    }
+
+  });
+});
 router.get('/date', function(req, res, next) {
   res.render('index', { title: 'Index' });
   console.log(moment());

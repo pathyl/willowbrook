@@ -1,0 +1,25 @@
+extends layout
+block content
+                    .card.w-80
+                        h5.card-header.text-center= title
+                        .card-body
+                            table.table.table-striped
+                                tbody
+                                    tr
+                                    th(scope='col') Student Name
+                                    th(scope='col') Program
+                                    th(scope='col') Date of Birth
+                                    th(scope='col') Student ID
+                                    th(scope='col')
+                                    th(scope='col') Household ID
+                                    each student in students
+                                        tr
+                                        td #{student.studentFirstName} #{student.studentLastName}
+                                        td #{student.programID}
+                                        td #{student.dateOfBirth}
+                                        td #{student.studentID}
+                                        td 
+                                            a.btn.btn-primary(href=`/student/${student.studentID}`) View Student
+                                        td #{student.householdID}
+                                        td 
+                                            a.btn.btn-primary(href=`/household/${student.householdID}`) View Household

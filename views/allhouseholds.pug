@@ -1,0 +1,17 @@
+extends layout
+block content
+                    .card.w-80
+                        h5.card-header.text-center= title
+                        .card-body
+                            table.table.table-striped
+                                tbody
+                                    tr
+                                    th(scope='col') Parent Name
+                                    th(scope='col') Household ID
+                                    th(scope='col')
+                                    each household in households
+                                        tr
+                                        td #{household.parentFirstName} #{household.parentLastName}
+                                        td #{household.householdID}
+                                        td 
+                                            a.btn.btn-primary(href=`/household/${household.householdID}`) View household
