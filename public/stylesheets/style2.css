@@ -3,7 +3,6 @@
     margin-top:1.5rem;
   }
 
-  
   .bill-card-header{
 
     font-weight: normal !important;
@@ -47,13 +46,23 @@
       border-top:none;
   }
 .paypad{
-    padding-left:15rem;
+    padding-left:12rem;
 }
 body{
-    font-size:140%;
+    font-size:115%;
 }
-
+.card-header table{
+  margin-bottom:0rem;
+}
+.nobold{
+  font-weight:normal;
+}
+.table td, .table th{
+  padding:.50rem;
+}
   /* Print styling */
+
+
 
 @media print {
 

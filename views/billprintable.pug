@@ -12,155 +12,156 @@ html
     .container
         .row
             .col-xs-12
+                script
+                    if household[0].billingCycle == "Monthly"
+                        -var multiDiscount = (500 * .05);
+                        -var genDate = "4/24/2018"
+                        -var tuition = 500;
+                        -var monthlyDiscount = 25;
+                        if students.length > 1
+                            -var multiDiscount = (500 * .05);
+                        else
+                            -var multiDiscount = 0;
+                    else
+                        -var genDate = "4/27/2018"
+                        -var tuition = 125
+                        -var monthlyDiscount = 0;
+                        if students.length > 1
+                            -var multiDiscount = (125 * .05);
+                        else
+                            -var multiDiscount = 0;
+                    -var subTotalTuition = tuition - multiDiscount - monthlyDiscount;
+                    -var aftercareMonthlyRate = 300;
+                    -var grandTotal = 0;
+                    -var randNum =Math.floor((Math.random() * (985 - 240) + 240)) ;
                 .card.bill-card
-                    .card-header.bill-card-header
-                        .row
-                            table.table
-                                tbody
-                                tr
-                                th(scope='col')
-                                    h1.nowrap Invoice
-                                th(scope='col')
-                                th(scope='col')
-                                th(scope='col')
-                                th(scope='col')
-                                    h3.nowrap.float-right Date: 12/27/2017
-                                tr
-                                th(scope='col')
-                                th(scope='col')
-                                th(scope='col')
-                                th(scope='col')
-                                th(scope='col')
-                                    h3.nowrap.float-right Invoice #:223
-                                tr
+                
+                .card-header.bill-card-header
+                    .row
+                    table.table
+                        tbody
+                        tr
+                        th(scope='col')
+                            h3.nowrap Invoice
+                        th(scope='col')
+                        th(scope='col')
+                        th(scope='col')
+                        th(scope='col')
+                            if household[0].billingCycle == "Monthly"
+                                h4.float-right #{genDate}
+                            else
+                                h4.float-right #{genDate}
+                        tr
+                        th(scope='col')
+                        th(scope='col')
+                        th(scope='col')
+                        th(scope='col')
+                        th(scope='col')
+                            h4.nowrap.float-right= `Invoice #: ${randNum}`
+                        tr
+                        
+                .card-body.bill-card-body.inner-padding
+                    .row
+                        .col-xs-3
+                            .row
+                                .col-xs-12
+                                    h5 Bill To:
+                            .row
+                                .col-xs-12
+                                    h5 #{household[0].parentFirstName} #{household[0].parentLastName}
+                            .row
+                                .col-xs-12
+                                    h6 #{household[0].streetAddress}
+                            .row
+                                .col-xs-12
+                                    h6.nowrap #{household[0].city}, #{household[0].state} #{household[0].zip}
+                            .row
+                                .col-xs-12
+                                    h6 #{household[0].phone}
+                        .col-xs-6.w-50
+                        .col-xs-3
+                            .row
+                                .col-xs-12
+                                    h5 Pay To:
+                            .row
+                                .col-xs-12
+                                    h5.nowrap Willowbrook Private School
+                            .row
+                                .col-xs-12
+                                    h6 3500 S 1st St 
+                            .row
+                                .col-xs-12
+                                    h6 Lufkin, TX 75904
+                            .row
+                                .col-xs-12
+                                    h6 (555)-864-3234
+                            .row
+                                .col-xs-12
+                                    h6 EIN: 12-3456789
 
-                    .card-body.bill-card-body.inner-padding
-                        .row
-                            .col-xs-3
-                                .row
-                                    .col-xs-12
-                                        h4 Bill To:
-                                .row
-                                    .col-xs-12
-                                        h4 Cortez Gartman
-                                .row
-                                    .col-xs-12
-                                        h5 456 Jones St
-                                .row
-                                    .col-xs-12
-                                        h5 Lufkin, TX 23943
-                                .row
-                                    .col-xs-12
-                                        h5 926-435-3592    
-                            .col-xs-5.paypad
-                                .row
-                                    .col-xs-12
-                                        h4 Pay To:
-                                .row
-                                    .col-xs-12
-                                        h4 Willowbrook Private School
-                                .row
-                                    .col-xs-12
-                                        h5 3500 S 1st St 
-                                .row
-                                    .col-xs-12
-                                        h5 Lufkin, TX 75904
-                                .row
-                                    .col-xs-12
-                                        h5 (555)-864-3234
-                                .row
-                                    .col-xs-12
-                                        h5 EIN: 12-3456789
-                        .row
+                    .row
                         table.table.table-striped
                             tbody
-                            tr
-                            th(scope='col')
-                                h5.nowrap Layna Gartman
-                            th(scope='col')
-                                .nowrap For the month of December 2017
-                            tr
-                            td
-                            td Academic Tuition
-                            td $500
-                            td
-                            tr
-                            td
-                            td Multi-Student Discount
-                            td -$25
-                            td
-                            tr
-                            td
-                            td Monthly Payment Discount
-                            td -$23.75
-                            td
-                            tr
-                            td
-                            td
-                            td.bold Tuition total
-                            td.bold $451.25
-                            tr
-                            td  
-                            td Monthly Aftercare Fees
-                            td $300
-                            td
-                            tr
-                            td
-                            td
-                            td.bold Aftercare total 
-                            td.bold $300
-                            tr
-                            td
-                            td
-                            td.bold.nowrap Layna Gartman Total:
-                            td
-                                h5.bold.underline $751.25
-                            tr
-                            th(scope='col')
-                                h5.nowrap Joseph Gartman
-                            th(scope='col')
-                                .nowrap For the month of December 2017
-                            tr
-                            td
-                            td Academic Tuition
-                            td $500
-                            td
-                            tr
-                            td
-                            td Multi-Student Discount
-                            td -$25
-                            td
-                            tr
-                            td
-                            td Monthly Payment Discount
-                            td -$23.75
-                            td
-                            tr
-                            td
-                            td
-                            td.bold Tuition total
-                            td.bold $451.25
-                            tr
-                            td  
-                            td Monthly Aftercare Fees
-                            td $300
-                            td
-                            tr
-                            td
-                            td
-                            td.bold Aftercare total 
-                            td.bold $300
-                            tr
-                            td
-                            td
-                            td.bold.nowrap Joseph Gartman Total:
-                            td
-                                h5.bold.underline $751.25
-                            tr
-                            td
-                            td
-                            td
-                                h5.bold Grand Total:
-                            td
-                                h4.bold.underline.nowrap $1502.50
-                            td
+                                each i in students
+                                    -var aftercareTotal = (i.aftercareUnits * 3);
+                                    if i.aftercare == "Yes"
+                                        -var studentTotal = aftercareMonthlyRate + subTotalTuition;
+                                        -grandTotal += studentTotal;
+                                    else
+                                        -var studentTotal = aftercareTotal + subTotalTuition;
+                                        -grandTotal += studentTotal;
+                                    tr
+                                    th(scope='col')
+                                        h5.nowrap #{i.studentFirstName} #{i.studentLastName}
+                                    if household[0].billingCycle == "Monthly"
+                                        th(scope='col')
+                                            .nowrap.nobold For the month of April 2018
+                                    else
+                                        th(scope='col')
+                                            .nowrap.nobold For the 4th week of April 2018
+                                    tr
+                                    td
+                                    td Academic Tuition
+                                    td= `$${tuition}`
+                                    td
+                                    if students.length > 1
+                                        tr
+                                        td
+                                        td Multi-Student Discount 5%
+                                        td= `-$${multiDiscount}`
+                                    if household[0].billingCycle == "Monthly"
+                                        tr
+                                        td
+                                        td Monthly Payment Discount 5%
+                                        td= `-$${monthlyDiscount}`
+                                    tr
+                                    td
+                                    td
+                                    td.bold Tuition total
+                                    td.bold= `$${subTotalTuition}`
+                                    if i.aftercare == "Yes"
+                                        tr
+                                        td
+                                        td Aftercare Fees
+                                        td Monthly Rate
+                                        td.bold $300
+                                    else
+                                        tr
+                                        td
+                                        td Drop-in Aftercare Fees for #{i.aftercareUnits} Units (15-minute)
+                                        td.bold Aftercare total
+                                        td.bold= `$${aftercareTotal}`
+                                    tr
+                                    td
+                                    td
+                                    td.bold.nowrap #{i.studentFirstName} #{i.studentLastName} Total:
+                                    td 
+                                        h5.bold.underline= `$${studentTotal}`
+                                tr
+                                td
+                                td
+                                td
+                                    h5.bold.nowrap Grand Total:
+                                td
+                                    h4.bold.underline= `$${grandTotal}`
+                                td
