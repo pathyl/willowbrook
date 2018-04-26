@@ -4,6 +4,8 @@ var router = express.Router();
 var allSchemas = require('../models/db');
 var shortid = require('../node_modules/shortid');
 var bodyParser = require('body-parser');
+var moment = require('moment');
+moment().format();
 
 shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_');
 function isNumeric(n) {
@@ -67,6 +69,26 @@ router.get('/student/:studentId', function(req, res, next) {
     });
 });
 
+
+router.get('/billdetails/:householdId', function(req,res,next){
+
+  allSchemas.household.find({householdID: req.params.householdId}, function(err, foundHousehold){
+    if(err){
+      console.log(err);
+    }else{
+      //console.log("Found Household " + foundHousehold);
+      allSchemas.student.find({householdID: req.params.householdId}, function(err, foundStudents){
+        if(err){
+          console.log(err);
+        }else{
+          console.log("inside studentfinder else");
+          res.render('billdetails', { title: 'Invoice', students: foundStudents, household: foundHousehold });
+        }
+      });
+    }
+
+  });
+});
 //Show household details page for :householdId
 router.get('/household/:householdId', function(req, res, next) {
   //this is how to extract the :householdId from url
@@ -85,25 +107,45 @@ router.get('/household/:householdId', function(req, res, next) {
           console.log(err + " Error finding students")
         }else{
           console.log("Found these students:" + foundStudents)
-          allSchemas.bill.find({householdID: result.householdID}, function(err, foundBills){
-            console.log("Entering bill finder");
+          //generate bills after finding household and students
+          allSchemas.bill.find({householdID: req.params.householdId},function(err, foundBills){
             if(err){
-              console.log(err + " Error finding bills")
+              console.log(err + " inside billfinder");
             }else{
-              res.render('householddetails', { title: 'Household Details', household: result, students: foundStudents, bills: foundBills});
+              if(foundBills.householdID == undefined){
+                console.log("No Bills");
+                //calculate grand total for bill
+                
+                // if there isn't a bill create one
+                var createdBill = new allSchemas.bill({
+                    householdID: result.householdID,
+
+                });
+                res.render('householddetails', { title: 'Household Details', household: result, students: foundStudents, bills: createdBill});
+              }else{
+                console.log("Found Bill HHID is: " + foundBills.householdID);
+                res.render('householddetails', { title: 'Household Details', household: result, students: foundStudents, bills: foundBills});
+              }
             }
           });
+          //display the page
+          //res.render('householddetails', { title: 'Household Details', household: result, students: foundStudents, bills: foundBills});
           
         }
       });
     }
   });
+
+  
 });
 
 // router.get('/household/0', function(req, res, next) {
 //   res.render('householddetails', { title: 'Household Details' });
 // });
-
+router.get('/date', function(req, res, next) {
+  res.render('index', { title: 'Index' });
+  console.log(moment());
+});
 router.get('/bill/:billId', function(req, res, next) {
   res.render('billdetails', { title: 'Itemized Bill' });
 });
@@ -154,8 +196,25 @@ router.post('/student/:studentid/aftercare', function(req, res, next) {
   newAftercare.save().then(result=>{
     console.log(result + " aftercare created");
   });
+  allSchemas.student.find({studentID: req.params.studentid}, function(err, foundStudent){
+    console.log("Trying to update student");
+    console.log(foundStudent[0] + " Found inside new aftercarefinder");
+    var totalUnits = (Number(req.body.aftercaretime) + Number(foundStudent[0].aftercareUnits));
+    foundStudent[0].set({aftercareUnits: totalUnits});
+    foundStudent[0].save(function(err, updatedStudent){
+      if(err){
+        console.log("Error updating the student " + err);
+      }else{
+        console.log("Updated the student with more aftercare time " + updatedStudent);
+      }
+    });
+    
+  });
+  //bring user back to the create aftercare form
+  console.log("before aftercare REDIRECT");
+  res.redirect('/student/'+req.params.studentid);
     //bring user back to the student they came from
-  res.redirect('/student/' + req.params.studentid);
+  //res.redirect('/student/' + req.params.studentid);
 });
 
 //create an absence for specific student
@@ -168,7 +227,7 @@ router.post('/student/:studentid/absence', function(req, res, next) {
   }); 
   
   newAbsence.save().then(result=>{
-    console.log(result + " aftercare created");
+    console.log(result + " absence created");
   });
   //bring user back to the student they came from
   res.redirect('/student/' + req.params.studentid);
@@ -188,7 +247,15 @@ router.post('/student/add/aftercare', function(req, res, next) {
   newAftercare.save().then(result=>{
     console.log(result + " aftercare created");
   });
+  allSchemas.student.find({studentID:newAftercare.studentID}, function(err, foundStudent){
+    console.log("Trying to update student");
+    foundStudent.aftercareUnits += req.body.aftercaretime;
+    foundStudent.save().then(result=>{
+      console.log("Updated student aftercareUnits " + result);
+    });
+  });
   //bring user back to the create aftercare form
+  console.log("before aftercare REDIRECT");
   res.redirect('/student/add/aftercare');
 });
 router.post('/student/add/absence', function(req, res, next) {
@@ -432,6 +499,7 @@ router.post('/student', function(req, res, next) {
   myStudent.save().then(result=> {
     console.log(result);
   }).catch(err => console.log(err));
+  res.redirect('/household/' + req.body.householdid);
 });
 
 //create a new student from the household details page button ---> household ID already known

@@ -98,10 +98,9 @@ const studentSchema = new mongoose.Schema({
     householdID: {type: Number},
     fullID: {type: String},
     notes: {type: String},
-    dateOfBirth: {type: String},
-	aftercare: {type: String},
+	dateOfBirth: {type: String},
+	aftercareUnits: {type: Number, default:0}
 	});
-	
 	//Start studentID at and increment by 1 for each new student
 	studentSchema.plugin(autoIncrement.plugin, {
 		model: 'studentSchema',
@@ -113,10 +112,14 @@ const studentSchema = new mongoose.Schema({
 const billSchema = new mongoose.Schema({
 	billID: {type: Number},
 	householdID: {type: Number},
+	genDate:{type:String},
 	dueDate: {type: String},
-	paid: {type: String},
+	parentName:{type:String},
+	parentStreet:{type:String},
+	parentPhone:{type:String},
 	amount: {type: Number},
-	discount: {type: String}
+	monthlyDiscount: {type: String},
+	multiDiscount: {type: String},
 });
 billSchema.plugin(autoIncrement.plugin, {
 	model: 'billSchema',
@@ -136,7 +139,6 @@ const householdSchema = new mongoose.Schema({
 	altphone: {type: String},
     billingCycle: {type: String},
 });
-
 //begin householdID at 100 and increment by 1 each time
 householdSchema.plugin(autoIncrement.plugin, {
 	model: 'householdSchema',

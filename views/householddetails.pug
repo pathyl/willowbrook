@@ -60,47 +60,21 @@ block content
                                         thead
                                             tr
                                             th(scope='col') Due
-                                            th(scope='col') Amount
-                                            th(scope='col') Paid
                                         tbody
                                             tr
-                                            td 1/1/2018
-                                            td $350.00
-                                            td Yes
-                                            tr
-                                            td 1/1/2018
-                                            td $350.00
-                                            td Yes
-                                            tr
-                                            td 1/1/2018
-                                            td $350.00
-                                            td Yes
-                                            tr
-                                            td 1/1/2018
-                                            td $350.00
-                                            td Yes
-                                            tr
-                                            td 1/1/2018
-                                            td $350.00
-                                            td Yes
-                                            tr
-                                            td 1/1/2018
-                                            td $350.00
-                                            td Yes
-                                            tr
-                                            td 1/1/2018
-                                            td $350.00
-                                            td Yes
-                                            tr
-                                            td 1/1/2018
-                                            td $350.00
-                                            td Yes
-                                            if bills
+                                            if household.billingCycle == "Monthly"
+                                                td= '5/1/2018'
+                                            else
+                                                td= '4/30/2018'
+                                            td 
+                                            td
+                                                a.btn.btn-info.btn-sm(href=`/billdetails/${household.householdID}`) View Bill
+                                            //if bills
                                                 each b in bills
                                                     tr
                                                     td= b.dueDate
                                                     td= b.amount
                                                     td= b.discount
                                                     td
-                                                        a.btn.btn-info.btn-sm(href=`/household/bill/${b.billID}`) View Bill      
+                                                        a.btn.btn-info.btn-sm(href='/bill/${b.billID}') View Bill      
 

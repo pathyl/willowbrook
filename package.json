@@ -14,6 +14,7 @@
     "express-validator": "^5.1.2",
     "http-errors": "~1.6.2",
     "id-shorter": "^0.1.1",
+    "moment": "^2.22.1",
     "mongodb": "^3.0.7",
     "mongoose": "^5.0.15",
     "mongoose-auto-increment": "^5.0.1",

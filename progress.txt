@@ -3,8 +3,6 @@ https://git.heroku.com/warm-taiga-71837.git
 studentdetails: finished
 search: finished
 
-
-
 householddetails:
 view bill button should redirect to itemized bill page /household/bill/:billdetails
 calculate bills on page load
@@ -12,14 +10,27 @@ calculate bills on page load
 
 
 on household load
+hardcode dates to begin
+
+monthly bills generated 4/24/2018  due 5/1/2018
+weekly bills generated 4/27/2018   due 4/30/2018
+
     if weekly
         generate weekly bill
         next bill due .....
             generate based on current household info
+        prev bill
+            generate and mark paid
     if monthly
+        current month, increment by one
+        first of incremented month is due date
+        1 week previous is generation date
+
         generate monthly bill
         next bill due ...
             generate based on current household info
+        prev bill
+            generate and mark paid
 
 
 temp fee values
@@ -44,27 +55,14 @@ generate one bill per family, listing each student’s charges separately, and a
 
 generate a receipt at the time payments are recorded. 
 This receipt should contain information required for reimbursement requests from different types of dependent care and tuition accounts, including name, location, and
- federal tax ID number of the school. EIN number example 00-0000000 12-3456789
- In addition, parents have asked for a separate statement accompanying their bill itemizing all drop-in after-care hours for that statement.
+federal tax ID number of the school. EIN number example 00-0000000 12-3456789
+In addition, parents have asked for a separate statement accompanying their bill itemizing all drop-in after-care hours for that statement.
 
 summary monthly report is generated for the Board of Directors from this spreadsheet summarizing fee collections for tuition and after care
-
-Willowbrook Private School               Invoice
-address.                          
-
-
-Bill To: parent info...
-
-StudentName1
-Academic tuition 
-
-due 12/12/2018          Total Due:
-
-
-each student plus subtotal = 4 columns 8 rows
 
 maybe:
 real logins
 print formatting
 update and delete students and households 
 change student/household search to have a search results page instead of using findOne use find() and display all found results
+
