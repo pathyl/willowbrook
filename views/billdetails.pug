@@ -82,6 +82,8 @@ block content
                 tbody
                     each i in students
                         -var aftercareTotal = (i.aftercareUnits * 3);
+                        if i.programID == "Aftercare Only"
+                            -subTotalTuition = 0;
                         if i.aftercare == "Yes"
                             -var studentTotal = aftercareMonthlyRate + subTotalTuition;
                             -grandTotal += studentTotal;
