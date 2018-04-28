@@ -104,6 +104,8 @@ html
                             tbody
                                 each i in students
                                     -var aftercareTotal = (i.aftercareUnits * 3);
+                                    if i.programID == "Aftercare Only"
+                                        -subTotalTuition = 0;
                                     if i.aftercare == "Yes"
                                         -var studentTotal = aftercareMonthlyRate + subTotalTuition;
                                         -grandTotal += studentTotal;
@@ -119,11 +121,18 @@ html
                                     else
                                         th(scope='col')
                                             .nowrap.nobold For the 4th week of April 2018
-                                    tr
-                                    td
-                                    td Academic Tuition
-                                    td= `$${tuition}`
-                                    td
+                                    if i.programID !="Aftercare Only"
+                                        tr
+                                        td
+                                        td Academic Tuition
+                                        td= `$${tuition}`
+                                        td
+                                    else
+                                        tr
+                                        td
+                                        td Academic Tuition
+                                        td "$0 (Aftercare Only)"
+                                        td
                                     if students.length > 1
                                         tr
                                         td
