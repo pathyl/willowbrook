@@ -152,6 +152,20 @@ router.get('/allstudents', function(req,res,next){
 
   });
 });
+router.get('/household/:householdId/itemizedaftercare', function(req, res, next){
+  console.log("inside router");
+  allSchemas.student.find({householdID: req.params.householdId}, function(err, foundStudents){
+    
+    if(err){
+      console.log("Error finding students in this household " +err);
+    }else{
+      console.log("Rendering");
+      res.render('itemizedaftercare', {title: 'Itemized Aftercare Report', students: foundStudents});
+    }
+
+  });
+  
+});
 
 router.get('/allhouseholds', function(req,res,next){
   allSchemas.household.find({}, function(err, foundHouseholds){
@@ -238,6 +252,7 @@ router.post('/student/:studentid/aftercare', function(req, res, next) {
     console.log("Trying to update student");
     console.log(foundStudent[0] + " Found inside new aftercarefinder");
     var totalUnits = (Number(req.body.aftercaretime) + Number(foundStudent[0].aftercareUnits));
+    foundStudent[0].aftercares.push(newAftercare);
     foundStudent[0].set({aftercareUnits: totalUnits});
     foundStudent[0].save(function(err, updatedStudent){
       if(err){

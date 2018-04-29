@@ -1,0 +1,25 @@
+extends layout
+block content
+    .card.bill-card
+    .card-header.bill-card-header
+        .row
+            .col
+                h2.text-center= title
+    .card-body.bill-card-body.inner-padding
+        .row
+            table.table.table-striped
+                tbody
+                    tr
+                    th(scope='col') Student
+                    th(scope='col') Date
+                    th(scope='col') Units (15 minute)
+                    each i in students
+                        tr
+                        td #{i.studentFirstName} #{i.studentLastName}
+                        td  #{i.aftercares.length}
+                        td
+                        each a in i.aftercares
+                            tr
+                            td 
+                            td #{a.date}
+                            td #{a.time}

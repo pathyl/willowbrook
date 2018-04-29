@@ -99,7 +99,8 @@ const studentSchema = new mongoose.Schema({
     fullID: {type: String},
     notes: {type: String},
 	dateOfBirth: {type: String},
-	aftercareUnits: {type: Number, default:0}
+	aftercareUnits: {type: Number, default:0},
+	aftercares:[aftercareSchema]
 	});
 	//Start studentID at and increment by 1 for each new student
 	studentSchema.plugin(autoIncrement.plugin, {
