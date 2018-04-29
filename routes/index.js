@@ -232,10 +232,76 @@ router.get('/createlogin', function(req, res, next) {
   res.render('createlogin', { title: 'Create Login' });
 });
 
+router.get('/student/:studentId/edit', function(req,res,next){
+  allSchemas.student.findOne({studentID:req.params.studentId}, function(err, foundStudent){
+    if(err){
+      console.log(err);
+    }else{
+      console.log("found student " + foundStudent);
+      res.render('studentedit',{title: "Edit Student Details", student: foundStudent, studentId: req.params.studentId});
+    }
+    
+  });
+  
+});
+router.get('/household/:householdId/edit', function(req,res,next){
+  allSchemas.household.findOne({householdID:req.params.householdId}, function(err, foundHousehold){
+    if(err){
+      console.log(err);
+    }else{
+      console.log("found Household " + foundHousehold);
+      res.render('householdedit',{title: "Edit Household Details", household: foundHousehold, householdId: req.params.householdId});
+    }
+    
+  });
+  
+});
 // END OF GETS
 
 //POSTS BEGIN
-
+router.post('/household/:householdId/edit', function(req,res,next){
+  allSchemas.household.findOneAndUpdate({householdID: req.params.householdId},
+    {parentFirstName: req.body.parentfirstname,
+    parentLastName: req.body.parentlastname,
+    streetAddress:req.body.streetaddress,
+    city:req.body.city,
+    state:req.body.state,
+    zip:req.body.zip,
+    phone:req.body.phone,
+    altphone:req.body.altphone,
+    billingCycle:req.body.billingcycle })
+  .then(function(){
+    allSchemas.household.findOne({householdID: req.params.householdId}, function(err, foundHousehold){
+      console.log("updated household: " + foundHousehold);
+    })
+    res.redirect('/household/' + req.params.householdId);
+  });
+ 
+});
+router.post('/student/:studentId/delete', function(req,res,next){
+  allSchemas.student.findOneAndRemove({studentID: req.params.studentId})
+  .then(function(){
+    console.log("student deleted");
+    res.redirect('/index');
+  })
+});
+router.post('/household/:householdId/delete', function(req,res,next){
+  allSchemas.household.findOneAndRemove({householdID: req.params.householdId})
+  .then(function(){
+    console.log("household deleted");
+    res.redirect('/index');
+  })
+});
+router.post('/student/:studentId/edit', function(req,res,next){
+  allSchemas.student.findOneAndUpdate({studentID: req.params.studentId},{studentFirstName: req.body.studentfirstname,studentLastName: req.body.studentlastname,programID: req.body.programid,aftercare: req.body.aftercare})
+  .then(function(){
+    allSchemas.student.findOne({studentID:req.params.studentId}, function(err, foundStudent){
+      console.log("updated student: " + foundStudent);
+    })
+    res.redirect('/student/' + req.params.studentId)
+  });
+ 
+});
 //create a new aftercare ticket for specific student
 router.post('/student/:studentid/aftercare', function(req, res, next) {
   console.log("in post router for /student/add/aftercare");

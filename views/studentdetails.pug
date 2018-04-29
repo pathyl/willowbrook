@@ -31,11 +31,15 @@ block content
                                     td #{student.programID}
                                     td
                                     tr
-                                    th(scope='row')
+                                    td
                                     td 
                                         a.btn.btn-info.btn-sm(href=`/student/${student.studentID}/absence`) Add Absence 
                                     td
-                                        a.btn.btn-info.btn-sm(href=`/student/${student.studentID}/aftercare`) Add Aftercare Time                                                                              
+                                        a.btn.btn-info.btn-sm(href=`/student/${student.studentID}/aftercare`) Add Aftercare Time  
+                                    tr
+                                    td
+                                    td
+                                        a.btn.btn-info.btn-sm(href=`/student/${student.studentID}/edit`) Edit Student                                                                          
             .col
                     .row
                         .card.card-wrapper

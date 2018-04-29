@@ -1,0 +1,63 @@
+extends layout
+block content
+    .card.w-80
+        h5.card-header.text-center= title
+        .card-body
+            .row
+                .col
+                    table.table.table-striped
+                        tbody
+                        tr
+                        th(scope='col') Student Name
+                        td #{student.studentFirstName} #{student.studentLastName}
+                        tr
+                        th(scope='col') Aftercare
+                        td #{student.aftercare}
+                        tr
+                        th(scope='col') Program ID
+                        td #{student.programID}
+                        tr
+                        td 
+                            form(action=`/student/${student.studentID}/delete` , method='POST')
+                                input#submit.form-control.btn.btn-danger.btn-sm(type='submit', value='Delete Student')
+                .col
+                    form(action=`/student/${student.studentID}/edit` , method='POST')
+                        div.form-group
+                        label.control-label(for='studentfirstname') Student First Name:
+                        input#studentfirstname.form-control(type='text', name='studentfirstname', required='' placeholder='Student First Name')
+                        div.form-group
+                        label.control-label(for='studentlastname') Student Last Name:
+                        input#studentlastname.form-control(type='text', name='studentlastname', required='' placeholder='Student Last Name')
+                        div.form-group
+                        label.control-label.form-check-label(for='aftercare') Aftercare:
+                        select#aftercare.form-control(name='aftercare', required='')
+                            option(value="Yes") Yes
+                            br
+                            option(value="No") No
+                        div.form-group
+                        label.control-label(for='programid') Academic Program:
+                        select#programid.form-control(name='programid', required='')
+                            option(value='Pre-K') Pre-K
+                            br
+                            option(value='Kindergarten') Kindergarten
+                            br
+                            option(value='First') First
+                            br
+                            option(value='Second') Second
+                            br
+                            option(value='Third') Third
+                            br
+                            option(value='Fourth') Fourth
+                            br
+                            option(value='Fifth') Fifth
+                            br
+                            option(value='Sixth') Sixth
+                            br
+                            option(value='Aftercare Only') Aftercare Only
+                            br
+                        
+                        .form-group
+                            input#submit.form-control.btn.btn-primary.btn-md(type='submit', value='Edit Student')
+                            p
+                            input#reset.form-control.btn.btn-danger.btn-md(type='reset', value='Reset Form')
+
