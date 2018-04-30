@@ -12,6 +12,7 @@ function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 };
 /* ALL GETS */
+
 router.get('/', function(req, res, next) {
   res.render('login', { title: 'Login' });
 });
@@ -161,6 +162,20 @@ router.get('/household/:householdId/itemizedaftercare', function(req, res, next)
     }else{
       console.log("Rendering");
       res.render('itemizedaftercare', {title: 'Itemized Aftercare Report', students: foundStudents});
+    }
+
+  });
+  
+});
+router.get('/household/:householdId/itemizedaftercareprintable', function(req, res, next){
+  console.log("inside router");
+  allSchemas.student.find({householdID: req.params.householdId}, function(err, foundStudents){
+    
+    if(err){
+      console.log("Error finding students in this household " +err);
+    }else{
+      console.log("Rendering");
+      res.render('itemizedaftercareprintable', {title: 'Itemized Aftercare Report', students: foundStudents});
     }
 
   });
