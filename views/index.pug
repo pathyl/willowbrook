@@ -13,7 +13,7 @@ block content
                       input#searchTerm.form-control(type='text', name='searchTerm', required='' placeholder='Search for Household')
                       input#submit.form-control.btn.btn-primary.btn-md(type='submit', value='Search') 
             .col
-              button.btn.btn-success.btn-md Add Student to Household
+              a.btn.btn-success.btn-md(href='/student') Add Student to Household
         .row
             .col
                 form.form-inline.bottom-pad(action='/studentsearch', method='POST')
@@ -22,7 +22,7 @@ block content
                       input#searchTerm.form-control(type='text', name='searchTerm', required='' placeholder='Search for Student')
                       input#submit.form-control.btn.btn-primary.btn-md(type='submit', value='Search')
             .col
-              button.btn.btn-success.btn-md Register New Household
+              a.btn.btn-success.btn-md(href='/household') Register New Household
         .row.bottom-pad
           .col
             a.btn.btn-primary(href="/allstudents") View All Students
